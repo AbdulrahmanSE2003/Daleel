@@ -14,7 +14,12 @@ function HeroSection() {
       {showSplash && (
         <div className="splash-screen">
           <div className="logo-wrapper">
-            <span className="logo">🔗</span>
+            <span className="logo">
+              <img
+                src="../../public/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
+                alt=""
+              />
+            </span>
           </div>
           <h1 className="brand">Daleel</h1>
         </div>

@@ -1,38 +1,44 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { LogIn } from "lucide-react";
 function Navbar() {
   return (
     <nav className="flex fixed top-0 left-0 w-full h-16 bg-transparent z-50 px-8 py-4 justify-between items-center pr-18">
-      <Link to="/" className="text-2xl font-light">
-        Daleel
-      </Link>
+      <NavLink to="/" className="text-2xl font-light flex items-center">
+        <div className="w-24 p-6 -mr-5">
+          <img
+            src="../../public/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
+            alt=""
+          />
+        </div>
+        <p className="font-normal">Daleel</p>
+      </NavLink>
       <div>
         <ul className="flex gap-10 justify-evenly items-center">
-          <Link
+          <NavLink
             className="opacity-75 hover:opacity-100 transition-opacity duration-300"
             to="/"
           >
             <li>Home</li>
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             className="opacity-75 hover:opacity-100 transition-opacity duration-300"
             to="/App"
           >
-            <li>My Links</li>
-          </Link>
-          <Link
+            <li>My NavLinks</li>
+          </NavLink>
+          <NavLink
             className="opacity-75 hover:opacity-100 transition-opacity duration-300"
             to="/dashboard"
           >
             <li>Dashboard</li>
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             className="opacity-75 hover:opacity-100 transition-opacity duration-300"
             to="/login"
           >
             <LogIn className="opacity-75 hover:opacity-100 transition-opacity duration-300" />
-          </Link>
+          </NavLink>
         </ul>
       </div>
     </nav>

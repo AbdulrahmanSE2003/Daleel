@@ -63,12 +63,13 @@ input::placeholder {
 .splash-screen {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #10b981, #059669);
+  /* background: linear-gradient(135deg, #10b981, #059669); */
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #000;
   font-family: "Poppins", sans-serif;
   z-index: 1000;
   animation: fadeOut 1s ease forwards;
@@ -91,7 +92,8 @@ input::placeholder {
 .brand {
   margin-top: 20px;
   font-size: 2.2rem;
-  font-weight: 700;
+  font-weight: 500;
+  letter-spacing: 0.25em;
   opacity: 0;
   animation: brandFadeIn 1s ease forwards;
   animation-delay: 0.7s;
@@ -134,8 +136,8 @@ input::placeholder {
 
   .content-r,
   .content-l {
-    animation: home 1.5s 0.05s forwards;
-    -webkit-animation: home 1.5s 0.05s forwards;
+    animation: home 1.5s 0.2s forwards;
+    -webkit-animation: home 1.5s 0.2s forwards;
   }
 
   .arrow {
