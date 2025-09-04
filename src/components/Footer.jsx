@@ -4,7 +4,11 @@ export default function Footer() {
     <footer className="bg-emerald-900 text-gray-300 py-7">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex gap-8">
-          <Link to="/app" href="/about" className="hover:text-white transition">
+          <Link
+            to="/links"
+            href="/about"
+            className="hover:text-white transition"
+          >
             My Links
           </Link>
           <Link

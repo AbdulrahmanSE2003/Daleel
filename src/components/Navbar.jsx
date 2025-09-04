@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { LogIn } from "lucide-react";
+
 function Navbar() {
   return (
-    <nav className="flex fixed top-0 left-0 w-full h-16 bg-transparent z-50 px-8 py-4 justify-between items-center pr-18">
+    <nav className="flex fixed top-0 left-0 w-full h-16 bg-gray-100 z-50 px-8 py-4 justify-between items-center">
       <NavLink to="/" className="text-2xl font-light flex items-center">
         <div className="w-24 p-6 -mr-5">
           <img
@@ -12,35 +13,52 @@ function Navbar() {
         </div>
         <p className="font-normal">Daleel</p>
       </NavLink>
-      <div>
-        <ul className="flex gap-10 justify-evenly items-center">
-          <NavLink
-            className="opacity-75 hover:opacity-100 transition-opacity duration-300"
-            to="/"
-          >
-            <li>Home</li>
-          </NavLink>
 
-          <NavLink
-            className="opacity-75 hover:opacity-100 transition-opacity duration-300"
-            to="/App"
-          >
-            <li>My NavLinks</li>
-          </NavLink>
-          <NavLink
-            className="opacity-75 hover:opacity-100 transition-opacity duration-300"
-            to="/dashboard"
-          >
-            <li>Dashboard</li>
-          </NavLink>
-          <NavLink
-            className="opacity-75 hover:opacity-100 transition-opacity duration-300"
-            to="/login"
-          >
-            <LogIn className="opacity-75 hover:opacity-100 transition-opacity duration-300" />
-          </NavLink>
-        </ul>
-      </div>
+      <ul className="flex gap-10 justify-evenly items-center">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `opacity-85 hover:opacity-100 hover:text-emerald-700 transition duration-300 ${
+              isActive ? "text-emerald-700 font-semibold" : ""
+            }`
+          }
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          to="/links"
+          className={({ isActive }) =>
+            `opacity-85 hover:opacity-100 hover:text-emerald-700 transition duration-300 ${
+              isActive ? "text-emerald-700 font-semibold" : ""
+            }`
+          }
+        >
+          My Links
+        </NavLink>
+
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            `opacity-85 hover:opacity-100 hover:text-emerald-700 transition duration-300 ${
+              isActive ? "text-emerald-700 font-semibold" : ""
+            }`
+          }
+        >
+          Profile
+        </NavLink>
+
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+            `opacity-85 hover:opacity-100 hover:text-emerald-700 transition duration-300 ${
+              isActive ? "text-emerald-700 font-semibold" : ""
+            }`
+          }
+        >
+          <LogIn className="inline-block" size={20} />
+        </NavLink>
+      </ul>
     </nav>
   );
 }

@@ -5,7 +5,7 @@ function HeroSection() {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 3500); // 2.5 ثانية
+    const timer = setTimeout(() => setShowSplash(false), 3000); // 3 ثانية
     return () => clearTimeout(timer);
   }, []);
 

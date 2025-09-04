@@ -30,7 +30,7 @@ export default function FeaturesSection() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition"
+              className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition hover:-translate-y-1 duration-300"
             >
               <div className="flex justify-center mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
