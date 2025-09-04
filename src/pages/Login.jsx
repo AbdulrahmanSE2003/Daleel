@@ -1,6 +1,6 @@
 import { useState } from "react";
-import LoginHalf from "../components/LoginHalf";
-import SignupHalf from "../components/SignupHalf";
+import LoginHalf from "../components/LoginSections/LoginHalf";
+import SignupHalf from "../components/LoginSections/SignupHalf";
 
 function Login() {
   const [half, setHalf] = useState("login");

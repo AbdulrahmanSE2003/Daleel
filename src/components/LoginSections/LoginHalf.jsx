@@ -1,4 +1,4 @@
-import Form from "../components/Form";
+import Form from "../LoginSections/Form";
 function LoginHalf({ onSwitch }) {
   return (
     <div className="bg-gray-50 w-full h-full ps-16 p-10  flex flex-col justify-start  items-between gap-6">
