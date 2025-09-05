@@ -112,16 +112,35 @@ function Profile() {
                 />
               </div>
             </div>
-            <div className="flex flex-wrap gap-4">
-              <button className="mt-6 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center gap-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50">
+            <div className="flex gap-4 mt-6">
+              <button
+                disabled={!edit}
+                className={`px-6 py-3 rounded-lg flex items-center justify-center gap-2 font-medium shadow-sm transition duration-300 ${
+                  edit
+                    ? "bg-emerald-500 hover:bg-emerald-600 text-white"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                }`}
+              >
                 Save Changes
               </button>
+
               <button
                 onClick={() => setEdit((prev) => !prev)}
-                className="mt-6 bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                className={`px-6 py-3 rounded-lg flex items-center justify-center gap-2 font-medium shadow-sm transition duration-300 ${
+                  edit
+                    ? "bg-red-500 hover:bg-red-600 text-white"
+                    : "bg-yellow-400 hover:bg-yellow-500 text-gray-800"
+                }`}
               >
-                <Pencil />
-                <span>Edit</span>
+                {edit ? (
+                  <>
+                    <span>Cancel</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Edit</span>
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -142,16 +161,35 @@ function Profile() {
                   }`}
                 />
               </div>
-              <div className="flex flex-wrap gap-4">
-                <button className="mt-6 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center gap-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50">
+              <div className="flex gap-4 mt-6">
+                <button
+                  disabled={!edit}
+                  className={`px-6 py-3 rounded-lg flex items-center justify-center gap-2 font-medium shadow-sm transition duration-300 ${
+                    edit
+                      ? "bg-emerald-500 hover:bg-emerald-600 text-white"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
+                >
                   Save Changes
                 </button>
+
                 <button
                   onClick={() => setEdit((prev) => !prev)}
-                  className="mt-6 bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out flex items-center justify-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+                  className={`px-6 py-3 rounded-lg flex items-center justify-center gap-2 font-medium shadow-sm transition duration-300 ${
+                    edit
+                      ? "bg-red-500 hover:bg-red-600 text-white"
+                      : "bg-yellow-400 hover:bg-yellow-500 text-gray-800"
+                  }`}
                 >
-                  <Pencil />
-                  <span>Edit</span>
+                  {edit ? (
+                    <>
+                      <span>Cancel</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Edit</span>
+                    </>
+                  )}
                 </button>
               </div>
             </div>
