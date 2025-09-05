@@ -220,6 +220,11 @@ input:focus::placeholder {
   opacity: 1;
 }
 
+/* !INFO: Circle */
+.circle {
+  animation: circle 7s infinite;
+  -webkit-animation: circle 7s infinite;
+}
 /*!INFO: Animations */
 @keyframes logoFadeIn {
   0% {
@@ -363,5 +368,30 @@ input:focus::placeholder {
   50%,
   100% {
     width: 180px;
+  }
+}
+
+@keyframes circle {
+  0% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
   }
 }

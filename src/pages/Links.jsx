@@ -81,7 +81,7 @@ function Links() {
         />
       )}
 
-      <div className="min-h-screen app p-6 md:p-14 mt-12 md:mt-0 flex flex-col gap-8 bg-gray-100">
+      <div className="min-h-screen app p-6 md:p-14 md:pt-18 mt-12 md:mt-0 flex flex-col gap-8 bg-gray-100">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-6">
           <h3 className="font-normal md:font-light text-3xl md:text-4xl my-2 relative">

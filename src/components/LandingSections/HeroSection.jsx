@@ -18,7 +18,7 @@ function HeroSection() {
               <img
                 src="/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
                 alt="Logo"
-                className="w-28 h-28 md:w-36 md:h-36"
+                className="w-40 h-40 md:w-52 md:h-52"
               />
             </span>
           </div>
@@ -32,7 +32,7 @@ function HeroSection() {
         } flex flex-col md:flex-row justify-center items-center w-full h-screen gap-10 px-6 md:px-16`}
       >
         {/* Circle Decoration */}
-        <div className="absolute w-[20rem] md:w-[40rem] h-[20rem] md:h-[40rem] bg-main opacity-20 -z-10 -right-[20%] md:-right-[15%] -top-[10%] md:-top-[20%] rounded-full"></div>
+        <div className="absolute circle w-[20rem] md:w-[40rem] h-[20rem] md:h-[40rem] bg-main opacity-20 -z-10 -right-[20%] md:-right-[15%] -top-[10%] md:-top-[20%] rounded-full"></div>
 
         {/* Left Content */}
         <div className="w-full mt-16 md:mt-0  md:w-1/2 flex flex-col justify-center items-start text-left gap-6 relative p-4 ps-6">
@@ -44,7 +44,7 @@ function HeroSection() {
             Daleel is your personal space to save and organize the links that
             matter. Never lose an important link again.
           </p>
-          <button className="bg-main transition duration-300 text-white rounded-xl shadow px-4 py-[6px] hover:scale-105">
+          <button className="bg-main transition duration-500 text-white rounded-xl shadow px-4 py-[6px] hover:scale-105 mx-auto md:mx-0">
             Start for Free
           </button>
         </div>
