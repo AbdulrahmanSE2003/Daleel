@@ -5,7 +5,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex gap-8">
           <Link to="/links" className="hover:text-white transition">
-            My Links
+            Links
           </Link>
           <Link to="/profile" className="hover:text-white transition">
             Dashboard

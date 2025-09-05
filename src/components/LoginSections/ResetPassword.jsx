@@ -1,38 +1,24 @@
 import { useState } from "react";
 import { Lock, Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
-import Loader from "../Loader";
-import ErrorToast from "../ErrorToast";
-
-import axios from "axios";
-
-const BASE_API = "https://dalil-backend-production.up.railway.app/api/";
 
 function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showError, setShowError] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
+    // هنا تضيف منطق تحديث الباسورد
     if (password !== confirmPassword) {
-      setError("Password do not match.");
+      setShowError(true);
       return;
     }
-
-    setLoading(true);
-    setError("");
-    try {
-      const res = await axios.post(`${BASE_API}reset-password`, {
-        email,
-      });
-
-      setSubmitted(true);
-    } catch (error) {}
+    setSubmitted(true);
+    console.log("Password reset:", password);
   }
 
   return (

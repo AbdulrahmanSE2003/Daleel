@@ -35,8 +35,8 @@ function HeroSection() {
         <div className="absolute w-[20rem] md:w-[40rem] h-[20rem] md:h-[40rem] bg-main opacity-20 -z-10 -right-[20%] md:-right-[15%] -top-[10%] md:-top-[20%] rounded-full"></div>
 
         {/* Left Content */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-start text-left gap-6 relative p-4 ps-6">
-          <h5 className="text-xl md:text-2xl uppercase">
+        <div className="w-full mt-16 md:mt-0  md:w-1/2 flex flex-col justify-center items-start text-left gap-6 relative p-4 ps-6">
+          <h5 className="text-2xl uppercase">
             Keep All your links in{" "}
             <span className="clr-main font-medium">1</span> place
           </h5>
