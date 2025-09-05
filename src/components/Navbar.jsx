@@ -2,6 +2,9 @@ import { NavLink } from "react-router-dom";
 import { LogIn } from "lucide-react";
 
 function Navbar() {
+  const logged = localStorage.getItem("token");
+  console.log(logged);
+
   return (
     <nav className="flex fixed top-0 left-0 w-full h-16 bg-gray-100 z-50 px-8 py-4 justify-between items-center">
       <NavLink to="/" className="text-2xl font-light flex items-center">

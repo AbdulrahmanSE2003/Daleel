@@ -8,6 +8,7 @@ import ForgotPassword from "./components/LoginSections/ForgotPassword";
 import ResetPassword from "./components/LoginSections/ResetPassword";
 import Links from "./pages/Links";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           path="/profile"
           element={
             <ProtectedRoute>
-              <div>profile</div>
+              <Profile />
             </ProtectedRoute>
           }
         />

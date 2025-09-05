@@ -25,7 +25,6 @@ function ForgotPassword() {
 
     try {
       const res = await axios.post(`${BASE_API}forgot-password`, { email });
-      // مفيش توكن هنا، بس لو العملية نجحت نخلي submitted true
       setSubmitted(true);
     } catch (error) {
       setError(error.response?.data?.message || "Something went wrong!");
