@@ -8,7 +8,7 @@ function CTASection() {
       <p className="text-lg text-black mb-8">
         Start now and keep them safe forever.
       </p>
-      <Link to="/app">
+      <Link to="/links">
         <button className="bg-main-hover font-medium px-8 py-4 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
           Try Dalil for Free
         </button>

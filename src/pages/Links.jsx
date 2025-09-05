@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import LinkCard from "../components/LinkCard";
+import AddLinkModal from "../components/AddLinkModal";
+import EditLinkModal from "../components/EditLinkModal";
 
 function Links() {
   const [links, setLinks] = useState([
@@ -28,15 +30,21 @@ function Links() {
   ]);
   const [linksToShow, setLinksToShow] = useState([]);
   const [query, setQuery] = useState("");
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [linkToEdit, setLinkToEdit] = useState({});
 
   let totalLinks = links.length;
 
-  // سيبنا بس الحذف
   function handleDelete(id) {
     setLinks(links.filter((link) => link.id !== id));
   }
+  function handleEdit(id) {
+    const temp = links.find((link) => link.id === id);
+    setLinkToEdit(temp);
+    setShowEditModal(true);
+  }
 
-  // البحث لسه شغال عادي
   function search(e) {
     const value = e.target.value;
     setQuery(value);
@@ -55,6 +63,23 @@ function Links() {
   return (
     <>
       <Navbar />
+
+      {showAddModal && (
+        <AddLinkModal
+          onClose={setShowAddModal}
+          setLinks={setLinks}
+          links={links}
+        />
+      )}
+
+      {showEditModal && (
+        <EditLinkModal
+          link={linkToEdit}
+          onClose={setShowEditModal}
+          setLinks={setLinks}
+          links={links}
+        />
+      )}
 
       <div className="min-h-screen app p-20 px-14 flex flex-col gap-12 justify-start items-start bg-gray-100">
         <div className="flex justify-between items-center w-full">
@@ -80,7 +105,10 @@ function Links() {
             className="w-4/6 border-2 border-gray-300 outline-none focus:border-emerald-700 transition duration-300 py-2 px-4 rounded-xl"
           />
           {/* زرار الإضافة شكلي بس دلوقتي */}
-          <button className="bg-emerald-700 text-white font-medium rounded-xl py-3 px-6 mb-[6px] hover:bg-emerald-800 transition duration-300 ">
+          <button
+            className="bg-emerald-700 text-white font-medium rounded-xl py-3 px-6 mb-[6px] hover:bg-emerald-800 transition duration-300 "
+            onClick={() => setShowAddModal((prev) => !prev)}
+          >
             Add Link +
           </button>
         </div>
@@ -91,7 +119,7 @@ function Links() {
               link={link}
               onDelete={handleDelete}
               key={link.id}
-              // شيلنا onEdit
+              onEdit={handleEdit}
             />
           ))}
         </div>

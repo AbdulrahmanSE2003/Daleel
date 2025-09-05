@@ -11,11 +11,11 @@ function LinkCard({ link, onDelete, onEdit }) {
 
         {/* التاجز */}
         {link.tags?.length > 0 && (
-          <div className="flex flex-wrap gap-2 ml-11">
+          <div className="flex flex-wrap gap-2 ml-14">
             {link.tags.map((tag, idx) => (
               <span
                 key={idx}
-                className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full font-medium"
+                className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full font-medium hover:scale-[1.1] transition duration-500 hover:bg-emerald-200"
               >
                 #{tag}
               </span>
