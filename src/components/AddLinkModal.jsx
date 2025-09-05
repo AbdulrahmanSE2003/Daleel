@@ -68,7 +68,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
               {emoji}
             </button>
             {showPicker && (
-              <div className="absolute top-20 right-0 z-50 shadow-lg">
+              <div className="absolute -top-20 right-0 z-50 shadow-lg">
                 <EmojiPicker onEmojiClick={onEmojiClick} />
               </div>
             )}

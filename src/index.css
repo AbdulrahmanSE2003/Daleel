@@ -200,6 +200,26 @@ input:focus::placeholder {
   }
 }
 
+/* !INFO: Toast */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ef4444; /* أحمر */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
 /*!INFO: Animations */
 @keyframes logoFadeIn {
   0% {

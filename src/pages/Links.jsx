@@ -84,7 +84,7 @@ function Links() {
       <div className="min-h-screen app p-20 px-14 flex flex-col gap-12 justify-start items-start bg-gray-100">
         <div className="flex justify-between items-center w-full">
           <h3 className="font-light text-4xl my-4 relative">
-            Welcome Back <span className="text-emerald-800">, (user)</span>
+            Welcome Back <span className="text-emerald-800">!</span>
           </h3>
           <div className="bg-white p-5 rounded-xl px-10 text-center shadow-lg total-links">
             <p className="text-gray-500 text-sm ">Total Links</p>
