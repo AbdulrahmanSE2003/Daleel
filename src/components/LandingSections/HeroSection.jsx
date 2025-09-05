@@ -50,7 +50,7 @@ function HeroSection() {
         </div>
 
         {/* Right Content */}
-        <div className="w-full md:w-1/2 h-64 md:h-full flex justify-center items-center z-10">
+        <div className="w-full pt-12 md:w-1/2 h-64 md:h-full flex justify-center items-center z-10">
           <img
             src="/hero.webp"
             className="w-4/6 h-full object-cover rounded-xl shadow-xl"

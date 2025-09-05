@@ -7,21 +7,21 @@ export default function HowItWorksGrid() {
       title: "Create your account",
       description: "Sign up in seconds and get started immediately.",
       bgColor: "bg-emerald-500",
-      image: "../../../public/Hands - Phone.png",
+      image: "/Hands - Phone.png",
     },
     {
       icon: <PlusCircle className="w-12 h-12 text-white" />,
       title: "Save your links",
       description: "Add links with one click from anywhere so easy.",
       bgColor: "bg-blue-500",
-      image: "../../../public/Hands - Tiny Lock.png",
+      image: "/Hands - Tiny Lock.png",
     },
     {
       icon: <Folder className="w-12 h-12 text-white" />,
       title: "Organize & find easily",
       description: "Use folders, tags, or search to stay in control.",
       bgColor: "bg-purple-500",
-      image: "../../../public/undraw_options_mw73.svg",
+      image: "/undraw_options_mw73.svg",
     },
   ];
 

@@ -9,7 +9,7 @@ function Navbar() {
       <NavLink to="/" className="text-2xl font-light flex items-center">
         <div className="w-24 p-6 -mr-5">
           <img
-            src="../../public/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
+            src="6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
             alt="Logo"
           />
         </div>
