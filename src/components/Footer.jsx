@@ -8,9 +8,9 @@ export default function Footer() {
             Links
           </Link>
           <Link to="/profile" className="hover:text-white transition">
-            Dashboard
+            Profile
           </Link>
-          <Link to="/" className="hover:text-white transition">
+          <Link to="/privacy" className="hover:text-white transition">
             Privacy Policy
           </Link>
         </div>

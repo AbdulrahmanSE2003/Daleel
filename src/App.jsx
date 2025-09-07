@@ -9,6 +9,7 @@ import ResetPassword from "./components/LoginSections/ResetPassword";
 import Links from "./pages/Links";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forget" element={<ForgotPassword />} />
         <Route path="/reset" element={<ResetPassword />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
 
         {/* Pages محمية */}
         <Route
