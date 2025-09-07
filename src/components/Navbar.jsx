@@ -7,7 +7,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="flex fixed top-0 left-0 w-full h-16 bg-gray-100 z-50 px-4 md:px-8 justify-between items-center shadow">
+    <nav className="flex fixed top-0 left-0 w-full h-16 bg-gray-50 z-50 px-4 md:px-8 justify-between items-center shadow">
       {/* Logo */}
       <NavLink to="/" className="text-2xl font-light flex items-center">
         <div className="w-20 p-3">
@@ -30,7 +30,7 @@ function Navbar() {
       {/* Links */}
       <ul
         className={`flex flex-col md:flex-row md:items-center gap-6 md:gap-10
-          absolute md:static top-16 left-0 w-full md:w-auto bg-gray-100 md:bg-transparent p-6 pl-12 md:p-0 shadow-xl md:shadow-none 
+          absolute md:static top-16 left-0 w-full md:w-auto bg-gray-50 md:bg-transparent p-6 pl-12 md:p-0 shadow-xl md:shadow-none 
           transition-all duration-300 ease-in-out 
           ${open ? "block" : "hidden md:flex"}`}
       >
