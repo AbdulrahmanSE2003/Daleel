@@ -27,12 +27,12 @@ export default function HowItWorksGrid() {
 
   return (
     <section className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-10 md:px-20 lg:px-6">
         <h2 className="text-4xl font-bold text-center mb-16">
           How <span className="text-emerald-500">Dalil</span> Works
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid lg:grid-cols-3 gap-10">
           {steps.map((step, index) => (
             <div
               key={index}

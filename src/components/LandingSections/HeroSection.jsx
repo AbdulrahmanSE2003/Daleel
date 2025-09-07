@@ -27,12 +27,12 @@ function HeroSection() {
       )}
 
       <div
-        className={`landing ${
+        className={`landing overflow-x-hidden relative ${
           showSplash ? "hidden" : ""
-        } flex flex-col md:flex-row justify-center items-center w-full h-screen gap-10 px-6 md:px-16`}
+        } flex flex-row justify-center items-center w-full h-screen gap-10 px-6 md:px-16`}
       >
         {/* Circle Decoration */}
-        <div className="absolute circle w-[20rem] md:w-[40rem] h-[20rem] md:h-[40rem] bg-main opacity-20 -z-10 -right-[20%] md:-right-[15%] -top-[10%] md:-top-[20%] rounded-full"></div>
+        <div className="absolute circle w-[20rem] md:w-[30rem] h-[20rem] md:h-[30rem] bg-main opacity-20 -z-10 -right-[20%] md:-right-[15%] -top-[10%] md:-top-[20%] rounded-full"></div>
 
         {/* Left Content */}
         <div className="w-full mt-16 md:mt-0  md:w-1/2 flex flex-col justify-center items-start text-left gap-6 relative p-4 ps-6">
@@ -50,7 +50,7 @@ function HeroSection() {
         </div>
 
         {/* Right Content */}
-        <div className="w-full pt-12 md:w-1/2 h-64 md:h-full flex justify-center items-center z-10">
+        <div className="w-full img-container pt-12 md:w-1/2 h-64 md:h-full flex justify-center items-center z-10">
           <img
             src="/hero.webp"
             className="w-4/6 h-full object-cover rounded-xl shadow-xl"

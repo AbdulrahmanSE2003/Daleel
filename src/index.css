@@ -35,9 +35,11 @@
 .bg-main-hover {
   background-color: var(--dark-accent-color);
 }
+html {
+  overflow-x: hidden;
+}
 body {
   font-family: "Inter", sans-serif;
-  overflow-x: hidden;
   background-color: var(--bg-color);
 }
 
@@ -393,5 +395,14 @@ input:focus::placeholder {
     -moz-transform: scale(1);
     -ms-transform: scale(1);
     -o-transform: scale(1);
+  }
+}
+
+/* !INFO: Responsive */
+@media screen and (max-width: 800px) {
+  .landing {
+    .img-container {
+      display: none;
+    }
   }
 }

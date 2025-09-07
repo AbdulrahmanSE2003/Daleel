@@ -21,7 +21,7 @@ export default function FeaturesSection() {
 
   return (
     <section className="py-16 bg-gray-100">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-16 sm:px-36 md:px-14 lg:px-6">
         <h2 className="text-3xl font-bold text-center mb-12">
           Why choose <span className="text-emerald-500">Dalil?</span>
         </h2>
