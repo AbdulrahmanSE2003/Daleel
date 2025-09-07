@@ -9,7 +9,7 @@ import ResetPassword from "./components/LoginSections/ResetPassword";
 import Links from "./pages/Links";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-import PrivacyPolicy from "./components/PrivacyPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
