@@ -10,7 +10,8 @@ export default function FeaturesSection() {
     {
       icon: <Zap className="w-8 h-8 text-emerald-500" />,
       title: "Fast & simple",
-      description: "Add and access your links in seconds.",
+      description:
+        "Add and access your links in seconds with our intuitive interface.",
     },
     {
       icon: <Lock className="w-8 h-8 text-emerald-500" />,
@@ -28,13 +29,15 @@ export default function FeaturesSection() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition hover:-translate-y-1 duration-300"
-            >
-              <div className="flex justify-center mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+            <div key={index} className="relative group">
+              <div className="absolute inset-0 rounded-2xl  bg-[length:300%_300%] bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 transition-all duration-500 group-hover:scale-105"></div>
+
+              {/* Card Content */}
+              <div className="relative bg-white rounded-2xl shadow-lg p-6 text-center transition-transform duration-500 group-hover:scale-105 group-hover:shadow-emerald-200">
+                <div className="flex justify-center mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
             </div>
           ))}
         </div>
