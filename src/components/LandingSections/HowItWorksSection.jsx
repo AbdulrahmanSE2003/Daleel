@@ -50,7 +50,7 @@ export default function HowItWorksGrid() {
           How <span className="text-emerald-500">Dalil</span> Works
         </h2>
 
-        <div className="grid lg:grid-cols-3 gap-10">
+        {/* <div className="grid lg:grid-cols-3 gap-10">
           {steps.map((step, index) => (
             <div
               key={index}
@@ -68,7 +68,7 @@ export default function HowItWorksGrid() {
               />
             </div>
           ))}
-        </div>
+        </div> */}
 
         <br />
       
