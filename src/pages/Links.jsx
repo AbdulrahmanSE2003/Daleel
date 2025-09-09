@@ -81,18 +81,18 @@ function Links() {
         />
       )}
 
-      <div className="min-h-screen app p-6 md:p-14 md:pt-18 mt-12 md:mt-0 flex flex-col gap-8 bg-gray-100">
+      <div className="min-h-screen app p-6 md:p-14 md:pt-20 mt-12 md:mt-0 flex flex-col gap-8 bg-gradient-to-br from-gray-50 to-[#0c8f63]/5">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-6">
           <h3 className="font-normal md:font-light text-3xl md:text-4xl my-2 relative">
             Welcome Back <span className="text-emerald-800">!</span>
           </h3>
-          <div className="bg-white p-4 md:p-5 rounded-xl w-full md:w-auto text-center shadow-lg total-links">
+          {/* <div className="bg-white p-4 md:p-5 rounded-xl w-full md:w-auto text-center shadow-lg total-links">
             <p className="text-gray-500 text-sm">Total Links</p>
             <p className="text-xl md:text-2xl font-semibold text-emerald-700">
               {totalLinks}
             </p>
-          </div>
+          </div> */}
         </div>
 
         {/* Controls */}
@@ -115,7 +115,7 @@ function Links() {
         </div>
 
         {/* Links List */}
-        <div className="mt-6 md:mt-10 flex flex-col gap-4 w-full">
+        <div className="mt-3 flex flex-col gap-4 w-full">
           {(query.length >= 2 ? linksToShow : links).map((link) => (
             <LinkCard
               link={link}

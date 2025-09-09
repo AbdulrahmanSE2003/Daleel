@@ -5,66 +5,176 @@ function HeroSection() {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 3000); // 3 ثواني
+    const timer = setTimeout(() => setShowSplash(false), 1800); // 1.8s for faster, impactful splash
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section className="landing-page h-screen relative">
+    <section className="relative min-h-screen bg-gradient-to-br from-[#0c8f63]/5 via-white to-[#0c8f63]/10 overflow-hidden">
       {showSplash && (
-        <div className="splash-screen flex flex-col justify-center items-center h-full bg-white">
-          <div className="logo-wrapper">
-            <span className="logo">
+        <div className="splash-screen fixed inset-0 flex flex-col justify-center items-center bg-gradient-to-b from-white to-[#0c8f63]/30 backdrop-blur-sm transition-opacity duration-600 ease-in-out">
+          <div className="logo-wrapper animate-zoom-in">
+            <span className="logo relative">
               <img
                 src="/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
-                alt="Logo"
-                className="w-40 h-40 md:w-52 md:h-52"
+                alt="Daleel Logo"
+                className="w-40 h-40 md:w-52 md:h-52 object-contain drop-shadow-xl"
               />
+              <div className="absolute inset-0 bg-[#0c8f63]/20 rounded-full blur-xl animate-pulse"></div>
             </span>
           </div>
-          <h1 className="brand text-3xl md:text-4xl font-bold mt-4">Daleel</h1>
+          <h1 className="brand text-4xl md:text-5xl font-extrabold mt-5 text-emerald-600 tracking-tight">
+            Daleel
+          </h1>
         </div>
       )}
 
       <div
-        className={`landing overflow-x-hidden relative ${
-          showSplash ? "hidden" : ""
-        } flex flex-row justify-center items-center w-full h-screen gap-10 px-6 md:px-16`}
+        className={`relative flex flex-col md:flex-row justify-center items-center min-h-screen gap-6 md:gap-12 px-4 sm:px-8 md:px-16 lg:px-24 transition-all duration-1000 ease-in-out ${
+          showSplash ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
+        }`}
       >
-        {/* Circle Decoration */}
-        <div className="absolute circle w-[20rem] md:w-[30rem] h-[20rem] md:h-[30rem] bg-main opacity-20 -z-10 -right-[20%] md:-right-[15%] -top-[10%] md:-top-[20%] rounded-full"></div>
+        {/* Decorative Elements */}
+        <div className="absolute w-[25rem] md:w-[40rem] h-[25rem] md:h-[40rem] bg-[#0c8f63]/15 rounded-full -z-10 -right-[12%] md:-right-[8%] -top-[15%] md:-top-[18%] animate-float-slow"></div>
+        <div className="absolute w-[15rem] md:w-[25rem] h-[15rem] md:h-[25rem] bg-[#0c8f63]/10 rounded-full -z-10 -left-[10%] md:-left-[5%] bottom-[10%] animate-float-slow reverse"></div>
 
         {/* Left Content */}
-        <div className="w-full mt-16 md:mt-0  md:w-1/2 flex flex-col justify-center items-start text-left gap-6 relative p-4 ps-6">
-          <h5 className="text-2xl uppercase">
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-start text-left gap-5 md:gap-8 z-10 mt-12 md:mt-0">
+          <h5 className="text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-wider text-gray-900 animate-slide-in-left">
             Keep All your links in{" "}
-            <span className="clr-main font-medium">1</span> place
+            <span className="text-[#0c8f63] font-black drop-shadow-md">
+              One
+            </span>{" "}
+            Place
           </h5>
-          <p className="font-light capitalize text-sm md:text-base">
+          <p className="text-gray-700 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md animate-slide-in-left delay-100">
             Daleel is your personal space to save and organize the links that
             matter. Never lose an important link again.
           </p>
-          <button className="bg-main transition duration-500 text-white rounded-xl shadow px-4 py-[6px] hover:scale-105 mx-auto md:mx-0">
-            Start for Free
+          <button className="relative bg-[#0c8f63] text-white font-semibold rounded-full px-6 py-3 shadow-lg hover:bg-[#0a7a54] hover:scale-110 transform transition-all duration-300 ease-in-out group">
+            <span className="relative z-10">Get Started Free</span>
+            <div className="absolute inset-0 bg-[#0c8f63]/50 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
           </button>
         </div>
 
         {/* Right Content */}
-        <div className="w-full img-container pt-12 md:w-1/2 h-64 md:h-full flex justify-center items-center z-10">
-          <img
-            src="/hero.webp"
-            className="w-4/6 h-full object-cover rounded-xl shadow-xl"
-            alt="person using phone with daleel app"
-          />
+        <div className="w-full md:w-1/2 flex justify-center items-center  z-10 relative">
+          <div className="relative w-4/5 sm:w-3/4 md:w-3/5 group">
+            <img
+              src="/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
+              className="w-full h-auto transition-all duration-500 group-hover:scale-105 group-hover:rotate-1 animate-slide-in-right md:object-cover md:bg-[#0c8f63]/5 md:rounded-2xl md:shadow-2xl"
+              alt="Person using Daleel app on phone"
+            />
+          </div>
         </div>
 
         {/* Down Arrow */}
         <ChevronsDown
-          size={35}
+          size={40}
           color="#0c8f63"
-          className="arrow absolute left-1/2 bottom-6 md:bottom-10 -translate-x-1/2 h-[30px] w-[30px] md:h-[35px] md:w-[35px] animate-bounce"
+          className="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-smooth"
         />
       </div>
+
+      {/* Custom Tailwind Animation Styles */}
+      <style jsx>{`
+        @keyframes zoom-in {
+          from {
+            transform: scale(0.7) rotate(5deg);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1) rotate(0);
+            opacity: 1;
+          }
+        }
+        @keyframes glow {
+          0% {
+            text-shadow: 0 0 5px rgba(12, 143, 99, 0.3);
+          }
+          50% {
+            text-shadow: 0 0 15px rgba(12, 143, 99, 0.7);
+          }
+          100% {
+            text-shadow: 0 0 5px rgba(12, 143, 99, 0.3);
+          }
+        }
+        @keyframes slide-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes slide-in-right {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes float-slow {
+          0% {
+            transform: translateY(0) rotate(2deg);
+          }
+          50% {
+            transform: translateY(-25px) rotate(-2deg);
+          }
+          100% {
+            transform: translateY(0) rotate(2deg);
+          }
+        }
+        @keyframes float-slow-reverse {
+          0% {
+            transform: translateY(0) rotate(-2deg);
+          }
+          50% {
+            transform: translateY(25px) rotate(2deg);
+          }
+          100% {
+            transform: translateY(0) rotate(-2deg);
+          }
+        }
+        .animate-zoom-in {
+          animation: zoom-in 0.7s ease-out forwards;
+        }
+        .animate-glow {
+          animation: glow 2s ease-in-out infinite;
+        }
+        .animate-slide-in-left {
+          animation: slide-in-left 0.8s ease-out forwards;
+        }
+        .animate-slide-in-right {
+          animation: slide-in-right 0.8s ease-out forwards;
+        }
+        .delay-100 {
+          animation-delay: 0.1s;
+        }
+        .animate-float-slow {
+          animation: float-slow 6s ease-in-out infinite;
+        }
+        .animate-float-slow.reverse {
+          animation: float-slow-reverse 6s ease-in-out infinite;
+        }
+        .animate-bounce-smooth {
+          animation: bounce 2s ease-in-out infinite;
+        }
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-12px);
+          }
+        }
+      `}</style>
     </section>
   );
 }
