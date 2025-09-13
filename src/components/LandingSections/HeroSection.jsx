@@ -51,7 +51,7 @@ function HeroSection() {
             Daleel is your personal space to save and organize the links that
             matter. Never lose an important link again.
           </p>
-          <button className="relative bg-[#0c8f63] text-white font-semibold rounded-full px-6 py-3 shadow-lg hover:bg-[#0a7a54] hover:scale-110 transform transition-all duration-300 ease-in-out group">
+          <button className="relative bg-[#0c8f63] text-white font-semibold rounded-full px-6 py-3 shadow-lg hover:bg-[#0a7a54] hover:scale-105 transform transition-all duration-300 ease-in-out group">
             <span className="relative z-10">Get Started Free</span>
             <div className="absolute inset-0 bg-[#0c8f63]/50 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
           </button>
@@ -62,8 +62,8 @@ function HeroSection() {
           <div className="relative w-4/5 sm:w-3/4 md:w-3/5 group">
             <img
               src="/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
-              className="w-full h-auto transition-all duration-500 group-hover:scale-105 group-hover:rotate-1 animate-slide-in-right md:object-cover md:bg-[#0c8f63]/5 md:rounded-2xl md:shadow-2xl"
-              alt="Person using Daleel app on phone"
+              className="w-full h-auto transition-all duration-500 group-hover:scale-110 group-hover:rotate-2 animate-slide-in-right md:object-cover  md:rounded-2xl "
+              alt="Daleel brand"
             />
           </div>
         </div>

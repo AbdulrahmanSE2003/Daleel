@@ -8,13 +8,15 @@ function ResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     // هنا تضيف منطق تحديث الباسورد
     if (password !== confirmPassword) {
       setShowError(true);
+      setErrorMessage("Password do not match!");
       return;
     }
     setSubmitted(true);
@@ -104,9 +106,7 @@ function ResetPassword() {
         {/* Success Message */}
         {showError && (
           <div className="bg-red-50 bg-opacity-80 p-4 flex items-center gap-3 shadow-md rounded-2xl border border-red-200 mt-4 animate-fadeIn">
-            <p className="text-red-700 font-medium">
-              The passwords doesn't match, Try again!
-            </p>
+            <p className="text-red-700 font-medium">{errorMessage}</p>
           </div>
         )}
         {submitted && (

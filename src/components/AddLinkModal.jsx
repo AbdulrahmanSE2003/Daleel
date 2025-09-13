@@ -1,5 +1,9 @@
+import axios from "axios";
 import EmojiPicker from "emoji-picker-react";
 import { useState } from "react";
+
+const BASE_API = "https://dalil-backend-production.up.railway.app/api/";
+const token = localStorage.getItem("token");
 
 function AddLinkModal({ onClose, setLinks, links }) {
   const [linkName, setLinkName] = useState("");
@@ -9,17 +13,40 @@ function AddLinkModal({ onClose, setLinks, links }) {
   const [showPicker, setShowPicker] = useState(false);
   const [tagInput, setTagInput] = useState("");
 
-  function handleAdd() {
+  async function handleAdd() {
     const newLink = {
       id: crypto.randomUUID(),
-      name: linkName,
+      title: linkName,
       url: linkUrl,
       emoji: emoji,
       tags: linkTags,
     };
 
     setLinks([...links, newLink]);
+
     onClose(false);
+
+    try {
+      const res = await axios.post(
+        `${BASE_API}links`,
+        {
+          title: linkName,
+          url: linkUrl,
+          tags: linkTags,
+        },
+        {
+          headers: {
+            Authorization: ` Bearer ${token}`,
+          },
+        }
+      );
+
+      setLinks((prev) =>
+        prev.map((link) => (link.id === newLink.id ? res.data : link))
+      );
+    } catch (error) {
+      console.error("Failed to save link:", error);
+    }
   }
 
   function onEmojiClick(emojiData) {
@@ -123,7 +150,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
                   onChange={(e) => setTagInput(e.target.value)}
                   onKeyDown={handleTagKeyDown}
                   className="flex-1 outline-none p-1 text-sm bg-transparent placeholder-gray-400"
-                  placeholder="Type tag & press Enter" 
+                  placeholder="Type tag & press Enter"
                 />
               )}
             </div>
@@ -132,6 +159,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
           <button
             type="button"
             disabled={!linkName && !linkUrl}
+            onClick={() => handleAdd()}
             className={`relative bg-[#0c8f63] text-white py-2.5 px-6 rounded-lg font-semibold hover:bg-[#0a7a54] hover:shadow-[0_0_15px_rgba(12,143,99,0.5)] transition-all duration-300 transform hover:-translate-y-0.5 group ${
               linkName && linkUrl ? "" : "cursor-not-allowed opacity-50"
             }`}

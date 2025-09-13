@@ -26,6 +26,11 @@
   background-color: #037752;
 }
 
+::selection {
+  background-color: var(--dark-accent-color);
+  color: var(--color-white);
+}
+
 .clr-main {
   color: var(--accent-color);
 }

@@ -71,8 +71,8 @@ export default function HowItWorksGrid() {
         </div> */}
 
         <br />
-      
-      {/* Some Animation */}   
+
+        {/* Some Animation */}
         <div className="grid lg:grid-cols-3 gap-10">
           {steps.map((step, index) => (
             <div
@@ -97,7 +97,7 @@ export default function HowItWorksGrid() {
                     {step.features.map((feature, index) => (
                       <li
                         key={index}
-                        className={`inline-flex gap-2 items-center justify-center group-hover:delay-${
+                        className={`inline-flex gap-2 items-center  justify-center group-hover:delay-${
                           200 + index * 100
                         } transition-all opacity-0 group-hover:opacity-100 group-hover:transition-all group-hover:duration-500`}
                       >
@@ -116,7 +116,7 @@ export default function HowItWorksGrid() {
                           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                           <polyline points="22 4 12 14.01 9 11.01" />
                         </svg>
-                        <p className="text-xs font-semibold text-white">
+                        <p className="text-xs font-semibold text-gray-200 ">
                           {feature}
                         </p>
                       </li>

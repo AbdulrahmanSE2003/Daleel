@@ -191,7 +191,7 @@ function SignUupHalf({ onSwitch }) {
 
           {/* Sign Up Button */}
           <button
-            className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 px-6 rounded-lg text-white font-semibold mt-6 mb-4"
+            className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 px-6 rounded-lg text-white font-semibold"
             disabled={loading}
           >
             {loading ? <Loader /> : "Sign Up"}
