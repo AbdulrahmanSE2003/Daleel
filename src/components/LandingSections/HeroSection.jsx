@@ -23,7 +23,7 @@ function HeroSection() {
               <div className="absolute inset-0 bg-[#0c8f63]/20 rounded-full blur-xl animate-pulse"></div>
             </span>
           </div>
-          <h1 className="brand text-4xl md:text-5xl font-extrabold mt-5 text-emerald-600 tracking-tight">
+          <h1 className="brand text-4xl md:text-5xl font-extrabold mt-5 text-emerald-800 tracking-tight">
             Daleel
           </h1>
         </div>

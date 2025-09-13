@@ -59,15 +59,14 @@ function Navbar() {
         </NavLink>
 
         <NavLink
-          to="/profile"
+          to="/contact"
           className={({ isActive }) =>
             `opacity-85 hover:opacity-100 hover:text-emerald-700 transition duration-300 ${
               isActive ? "text-emerald-700 font-semibold" : ""
             }`
           }
-          onClick={() => setOpen(false)}
         >
-          Profile
+          Contact Us
         </NavLink>
 
         {!logged && (
@@ -81,20 +80,6 @@ function Navbar() {
             onClick={() => setOpen(false)}
           >
             <LogIn className="inline-block" size={20} />
-          </NavLink>
-        )}
-
-        {logged && (
-          <NavLink
-            to="/profile"
-            className={({ isActive }) =>
-              `opacity-85 hover:opacity-100 hover:text-emerald-700 transition duration-300 ${
-                isActive ? "text-emerald-700 font-semibold" : ""
-              }`
-            }
-            onClick={() => setOpen(false)}
-          >
-            <CircleUser className="inline-block" size={20} />
           </NavLink>
         )}
       </ul>
