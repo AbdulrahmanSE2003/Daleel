@@ -2,14 +2,11 @@ import { Edit, Trash2 } from "lucide-react";
 
 function LinkCard({ link, onDelete, onEdit }) {
   return (
-    <div className="group relative flex flex-col md:flex-row w-full items-start md:items-center justify-between bg-white/95 backdrop-blur-sm shadow-lg rounded-2xl p-6  hover:shadow-xl  transition-all duration-300 ease-in-out animate-glow-in overflow-hidden border-2 border-transparent hover:border-emerald-600 ">
-      {/* Animated Glow Border */}
-      {/* <div className="absolute inset-0 border-2 border-transparent rounded-2xl animate-border-glow"></div> */}
-
+    <div className="group relative flex flex-col md:flex-row w-full items-start md:items-center justify-between bg-white/95 backdrop-blur-sm shadow-lg rounded-2xl p-6 py-3  hover:shadow-xl  transition-all duration-300 ease-in-out animate-glow-in overflow-hidden border-2 border-transparent hover:border-emerald-600 ">
       <div className="flex flex-col gap-4 w-full relative z-10">
         <div className="flex items-center gap-4">
           <span className="text-3xl transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-400">
-            {link.emoji}
+            {link.emoji} 🔗
           </span>
           <p className="font-sans font-semibold text-gray-900 text-xl md:text-2xl tracking-tight group-hover:text-emerald-700 transition-colors duration-300">
             {link.title}
@@ -45,14 +42,14 @@ function LinkCard({ link, onDelete, onEdit }) {
         </a>
         <button
           onClick={() => onEdit(link.id)}
-          className="relative bg-gray-700 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-800  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
+          className="relative bg-gray-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-800  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
         >
           <Edit
             size={16}
             className="group-hover:scale-105 transition-transform"
           />
           <span className="relative z-10">Edit</span>
-          <div className="absolute inset-0 bg-gray-800/40 rounded-lg transition-all duration-300"></div>
+          <div className="absolute inset-0 bg-gray-600/40 rounded-lg transition-all duration-300"></div>
         </button>
         <button
           onClick={() => onDelete(link.id)}
