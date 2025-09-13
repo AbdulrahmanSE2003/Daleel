@@ -40,11 +40,9 @@ function HeroSection() {
 
         {/* Left Content */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-start text-left gap-5 md:gap-8 z-10 mt-12 md:mt-0">
-          <h5 className="text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-wider text-gray-900 animate-slide-in-left">
+          <h5 className="text-2xl sm:text-3xl md:text-4xl font-semibold uppercase tracking-wider text-gray-900 animate-slide-in-left">
             Keep All your links in{" "}
-            <span className="text-[#0c8f63] font-black drop-shadow-md">
-              One
-            </span>{" "}
+            <span className="text-[#0c8f63] font-bold drop-shadow-md">One</span>{" "}
             Place
           </h5>
           <p className="text-gray-700 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-md animate-slide-in-left delay-100">
@@ -75,106 +73,6 @@ function HeroSection() {
           className="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-smooth"
         />
       </div>
-
-      {/* Custom Tailwind Animation Styles */}
-      <style jsx>{`
-        @keyframes zoom-in {
-          from {
-            transform: scale(0.7) rotate(5deg);
-            opacity: 0;
-          }
-          to {
-            transform: scale(1) rotate(0);
-            opacity: 1;
-          }
-        }
-        @keyframes glow {
-          0% {
-            text-shadow: 0 0 5px rgba(12, 143, 99, 0.3);
-          }
-          50% {
-            text-shadow: 0 0 15px rgba(12, 143, 99, 0.7);
-          }
-          100% {
-            text-shadow: 0 0 5px rgba(12, 143, 99, 0.3);
-          }
-        }
-        @keyframes slide-in-left {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        @keyframes slide-in-right {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        @keyframes float-slow {
-          0% {
-            transform: translateY(0) rotate(2deg);
-          }
-          50% {
-            transform: translateY(-25px) rotate(-2deg);
-          }
-          100% {
-            transform: translateY(0) rotate(2deg);
-          }
-        }
-        @keyframes float-slow-reverse {
-          0% {
-            transform: translateY(0) rotate(-2deg);
-          }
-          50% {
-            transform: translateY(25px) rotate(2deg);
-          }
-          100% {
-            transform: translateY(0) rotate(-2deg);
-          }
-        }
-        .animate-zoom-in {
-          animation: zoom-in 0.7s ease-out forwards;
-        }
-        .animate-glow {
-          animation: glow 2s ease-in-out infinite;
-        }
-        .animate-slide-in-left {
-          animation: slide-in-left 0.8s ease-out forwards;
-        }
-        .animate-slide-in-right {
-          animation: slide-in-right 0.8s ease-out forwards;
-        }
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-        .animate-float-slow {
-          animation: float-slow 6s ease-in-out infinite;
-        }
-        .animate-float-slow.reverse {
-          animation: float-slow-reverse 6s ease-in-out infinite;
-        }
-        .animate-bounce-smooth {
-          animation: bounce 2s ease-in-out infinite;
-        }
-        @keyframes bounce {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-12px);
-          }
-        }
-      `}</style>
     </section>
   );
 }

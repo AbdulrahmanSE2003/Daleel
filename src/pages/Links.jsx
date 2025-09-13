@@ -67,7 +67,7 @@ function Links() {
     if (value.length >= 2) {
       setLinksToShow(
         links.filter((link) =>
-          link.name.toLowerCase().includes(value.toLowerCase())
+          link.title.toLowerCase().includes(value.toLowerCase())
         )
       );
     } else {

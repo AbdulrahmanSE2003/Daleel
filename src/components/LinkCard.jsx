@@ -6,7 +6,7 @@ function LinkCard({ link, onDelete, onEdit }) {
       <div className="flex flex-col gap-4 w-full relative z-10">
         <div className="flex items-center gap-4">
           <span className="text-3xl transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-400">
-            {link.emoji} 🔗
+            {link.emoji}
           </span>
           <p className="font-sans font-semibold text-gray-900 text-xl md:text-2xl tracking-tight group-hover:text-emerald-700 transition-colors duration-300">
             {link.title}
