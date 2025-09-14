@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 function ErrorToast({ message, onClose }) {
   const [visible, setVisible] = useState(false);
-  console.log("done");
 
   useEffect(() => {
     if (message) {

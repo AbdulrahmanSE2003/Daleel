@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import Loader from "../components/Loader";
 
 const BASE_API = "https://dalil-backend-production.up.railway.app/api/";
-const token = localStorage.getItem("token");
 
 function Links() {
   const [links, setLinks] = useState([]);
@@ -21,6 +20,7 @@ function Links() {
   // let totalLinks = links.length;
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     async function getLinks() {
       setIsLoading(true);
       try {
@@ -29,7 +29,7 @@ function Links() {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(res.data)
+        console.log(res.data);
         setLinks(res.data);
       } catch (error) {
         console.log(error);
@@ -41,6 +41,7 @@ function Links() {
   }, []);
 
   async function handleDelete(id) {
+    const token = localStorage.getItem("token");
     setLinks(links.filter((link) => link.id !== id));
 
     try {
