@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronsDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function HeroSection() {
   const [showSplash, setShowSplash] = useState(true);
@@ -49,10 +50,12 @@ function HeroSection() {
             Daleel is your personal space to save and organize the links that
             matter. Never lose an important link again.
           </p>
-          <button className="relative bg-[#0c8f63] text-white font-semibold rounded-full px-6 py-3 shadow-lg hover:bg-[#0a7a54] hover:scale-105 transform transition-all duration-300 ease-in-out group">
-            <span className="relative z-10">Get Started Free</span>
-            <div className="absolute inset-0 bg-[#0c8f63]/50 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
-          </button>
+          <Link to="links">
+            <button className="relative bg-[#0c8f63] text-white font-semibold rounded-full px-6 py-3 shadow-lg hover:bg-[#0a7a54] hover:scale-105 transform transition-all duration-300 ease-in-out group">
+              <span className="relative z-10">Get Started Free</span>
+              <div className="absolute inset-0 bg-[#0c8f63]/50 rounded-full blur-md group-hover:blur-lg transition-all duration-300"></div>
+            </button>
+          </Link>
         </div>
 
         {/* Right Content */}

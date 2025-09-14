@@ -198,13 +198,13 @@ function SignUupHalf({ onSwitch }) {
           </button>
 
           {/* Sign Up with Google */}
-          <button
+          {/* <button
             type="button"
             className="flex items-center justify-center w-full border-2 border-gray-300 rounded-md py-3 px-6 mb-4 hover:bg-gray-100 transition-colors duration-300"
           >
             <FcGoogle className="mr-2 text-xl" />
             Sign up with Google
-          </button>
+          </button> */}
 
           {/* Already have account */}
           <p className="text-center text-gray-600">

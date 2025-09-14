@@ -29,6 +29,7 @@ function Links() {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(res.data)
         setLinks(res.data);
       } catch (error) {
         console.log(error);

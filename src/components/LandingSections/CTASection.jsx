@@ -23,54 +23,6 @@ function CTASection() {
           </button>
         </Link>
       </div>
-
-      {/* Custom Animation Styles */}
-      <style jsx>{`
-        @keyframes slide-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        @keyframes float-slow {
-          0% {
-            transform: translateY(0) rotate(2deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(-2deg);
-          }
-          100% {
-            transform: translateY(0) rotate(2deg);
-          }
-        }
-        @keyframes float-slow-reverse {
-          0% {
-            transform: translateY(0) rotate(-2deg);
-          }
-          50% {
-            transform: translateY(20px) rotate(2deg);
-          }
-          100% {
-            transform: translateY(0) rotate(-2deg);
-          }
-        }
-        .animate-slide-in {
-          animation: slide-in 0.7s ease-out forwards;
-        }
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-        .animate-float-slow {
-          animation: float-slow 6s ease-in-out infinite;
-        }
-        .animate-float-slow.reverse {
-          animation: float-slow-reverse 6s ease-in-out infinite;
-        }
-      `}</style>
     </section>
   );
 }

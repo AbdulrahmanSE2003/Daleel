@@ -101,7 +101,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
                 {emoji}
               </button>
               {showPicker && (
-                <div className="absolute top-[-18rem] right-0 z-50 shadow-xl rounded-lg bg-white/95 backdrop-blur-sm p-2 animate-fade-in">
+                <div className="absolute top-[-8rem] right-0 z-50 shadow-xl rounded-lg bg-white/95 backdrop-blur-sm p-2 animate-fade-in">
                   <EmojiPicker onEmojiClick={onEmojiClick} />
                 </div>
               )}
