@@ -15,6 +15,8 @@ export default function EditLinkModal({ link, onClose, links, setLinks }) {
   const [showPicker, setShowPicker] = useState(false);
   const [tagInput, setTagInput] = useState("");
 
+  console.log(linkEmoji);
+
   function removeTag(index) {
     setLinkTags(linkTags.filter((_, i) => i !== index));
   }
@@ -119,10 +121,10 @@ export default function EditLinkModal({ link, onClose, links, setLinks }) {
             />
             <button
               type="button"
-              className="absolute right-3 top-10 text-xl hover:scale-110 transition-transform duration-300"
+              className="absolute right-3 top-9 text-xl hover:scale-110 transition-transform duration-300"
               onClick={() => setShowPicker((prev) => !prev)}
             >
-              {linkEmoji}
+              {linkEmoji || "🔗"}
             </button>
             {showPicker && (
               <div className="absolute top-[-18rem] right-0 z-50 shadow-xl rounded-lg bg-white/95 backdrop-blur-sm p-2 animate-fade-in">
