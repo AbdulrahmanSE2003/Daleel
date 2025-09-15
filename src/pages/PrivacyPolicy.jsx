@@ -28,10 +28,10 @@ function PrivacyPolicy() {
           <p className="text-gray-700 leading-relaxed">
             If you have any questions, feel free to contact us at{" "}
             <a
-              href="mailto:support@daleel.com"
+              href="mailto:daleel.getapp@gmail.com"
               className="text-emerald-600 underline"
             >
-              [email]
+              daleel.support@gmail.com
             </a>
             .
           </p>

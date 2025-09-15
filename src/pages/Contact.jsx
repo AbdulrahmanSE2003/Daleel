@@ -3,6 +3,8 @@ import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 
 export default function Contact() {
   const [showModal, setShowModal] = useState(false);
@@ -34,10 +36,11 @@ export default function Contact() {
 
   return (
     <>
+      <Navbar/>
       {showModal && (
         <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
           <div className="bg-white p-6 py-8 rounded-2xl w-92 max-w-[90%] shadow-lg animate-[fadeIn_0.3s_ease-out] flex flex-col gap-6 items-center text-center">
-            <p className="text-ةي font-normal leading-relaxed">
+            <p className="text-md font-normal leading-relaxed">
               Thank you! Your message has been sent successfully. We’ll get back
               to you soon.
             </p>
@@ -50,7 +53,7 @@ export default function Contact() {
         </div>
       )}
 
-      <div className="h-screen bg-gray-100 flex flex-col items-center py-9 px-6">
+      <div className="min-h-screen mt-12 bg-gray-100 flex flex-col items-center py-9 pb-0 px-6">
         <div className="max-w-3xl bg-white rounded-2xl shadow p-8 md:p-12 w-full">
           <h1 className="text-3xl font-semibold text-emerald-700 mb-6">
             Contact Us
@@ -116,6 +119,8 @@ export default function Contact() {
           </form>
         </div>
       </div>
+
+      <Footer/>
     </>
   );
 }

@@ -59,7 +59,7 @@ function HeroSection() {
         </div>
 
         {/* Right Content */}
-        <div className="w-full md:w-1/2 flex justify-center items-center  z-10 relative">
+        <div className="w-full hidden md:block md:w-1/2 flex justify-center items-center  z-10 relative">
           <div className="relative w-4/5 sm:w-3/4 md:w-3/5 group">
             <img
               src="/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
