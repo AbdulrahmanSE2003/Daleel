@@ -1,6 +1,31 @@
-import { Edit, Trash2 } from "lucide-react";
+import { Edit, Trash2, Clipboard, ClipboardCheck,QrCode   } from "lucide-react";
+import {useState, useRef} from "react";
+import { QRCodeCanvas } from "qrcode.react";
 
 function LinkCard({ link, onDelete, onEdit }) {
+  const [isCopied, setIsCopied] = useState(false);
+  const qrRef = useRef();
+
+  function handleCopy(link){
+    navigator.clipboard.writeText(link).then(() => {
+        setIsCopied(true);
+
+        setTimeout(() =>{setIsCopied(false)}, 3000)
+    }).catch(err => console.log(err))
+  }
+
+  function handleDownloadQR() {
+    const canvas = qrRef.current.querySelector("canvas");
+    const pngUrl = canvas
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
+
+    const downloadLink = document.createElement("a");
+    downloadLink.href = pngUrl;
+    downloadLink.download = `qr-code-${link.title}.png`;
+    downloadLink.click();
+  }
+
   return (
     <div className="group relative flex flex-col md:flex-row w-full items-start md:items-center justify-between bg-white/95 backdrop-blur-sm shadow-lg rounded-2xl p-6 py-3  hover:shadow-xl  transition-all duration-500 ease-in-out animate-glow-in overflow-hidden border-2 border-transparent hover:border-emerald-500 ">
       <div className="flex flex-col gap-4 w-full relative z-10">
@@ -40,6 +65,31 @@ function LinkCard({ link, onDelete, onEdit }) {
           <span className="relative z-10">Open</span>
           <div className="absolute inset-0 bg-gradient-to-r from-[#0c8f63]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </a>
+        <button
+            onClick={() => handleCopy(link.url)}
+            className="relative bg-yellow-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-yellow-600  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
+        >
+          {isCopied ? (<><ClipboardCheck
+                  size={16}
+                  className="group-hover:scale-105 transition-transform"
+              />
+              <span className="relative z-10 transition duration-300">Copied</span></>)  :(<><Clipboard
+              size={16}
+              className="group-hover:scale-105 transition-transform"
+          />
+            <span className="relative z-10">Copy</span></>)}
+          <div className="absolute inset-0 bg-yellow-600/10 rounded-lg transition-all duration-300"></div>
+        </button>
+        <div ref={qrRef} className="hidden">
+          <QRCodeCanvas value={link.url} size={200} />
+        </div>
+        <button
+            onClick={handleDownloadQR}
+            className="bg-purple-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 flex items-center gap-1.5"
+        >
+          <QrCode size={16} />
+          <span>QR</span>
+        </button>
         <button
           onClick={() => onEdit(link.id)}
           className="relative bg-gray-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-800  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
