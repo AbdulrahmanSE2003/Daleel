@@ -55,7 +55,7 @@ function LinkCard({ link, onDelete, onEdit }) {
         )}
       </div>
 
-      <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto mt-4 md:mt-0 relative z-10">
+      <div className="flex flex-col md:flex-row md:max-h-11 gap-3 w-full md:w-auto mt-4 md:mt-0 relative z-10">
         <a
           href={link.url}
           target="_blank"
@@ -85,10 +85,10 @@ function LinkCard({ link, onDelete, onEdit }) {
         </div>
         <button
             onClick={handleDownloadQR}
-            className="bg-purple-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 flex items-center gap-1.5"
+            className="relative bg-purple-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-purple-700  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group leading-[1.1]"
         >
           <QrCode size={16} />
-          <span>QR</span>
+          <span>QR Code</span>
         </button>
         <button
           onClick={() => onEdit(link.id)}
