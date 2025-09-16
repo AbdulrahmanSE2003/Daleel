@@ -516,7 +516,7 @@ input:focus::placeholder {
   }
 }
 .animate-slide-in {
-  animation: slide-in 0.5s forwards;
+  animation: slide-in 0.35s forwards;
 }
 .delay-100 {
   animation-delay: 0.1s;
