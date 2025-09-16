@@ -1,6 +1,7 @@
 import { Edit, Trash2, Clipboard, ClipboardCheck,QrCode   } from "lucide-react";
 import {useState, useRef} from "react";
 import { QRCodeCanvas } from "qrcode.react";
+import Tooltip from "@mui/material/Tooltip";
 
 function LinkCard({ link, onDelete, onEdit }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -56,62 +57,69 @@ function LinkCard({ link, onDelete, onEdit }) {
       </div>
 
       <div className="flex flex-col md:flex-row md:max-h-11 gap-3 w-full md:w-auto mt-4 md:mt-0 relative z-10">
-        <a
-          href={link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative bg-[#0c8f63] text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-[#0a7a54] transition-all duration-300 transform hover:-translate-y-0.5 group text-center overflow-hidden"
-        >
-          <span className="relative z-10">Open</span>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c8f63]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </a>
-        <button
-            onClick={() => handleCopy(link.url)}
-            className="relative bg-yellow-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-yellow-600  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
-        >
-          {isCopied ? (<><ClipboardCheck
-                  size={16}
-                  className="group-hover:scale-105 transition-transform"
-              />
-              <span className="relative z-10 transition duration-300">Copied</span></>)  :(<><Clipboard
-              size={16}
-              className="group-hover:scale-105 transition-transform"
-          />
-            <span className="relative z-10">Copy</span></>)}
-          <div className="absolute inset-0 bg-yellow-600/10 rounded-lg transition-all duration-300"></div>
-        </button>
+
+          <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative bg-[#0c8f63] text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-[#0a7a54] transition-all duration-300 transform hover:-translate-y-0.5 group text-center overflow-hidden"
+          >
+            <span className="relative z-10">Open</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0c8f63]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+
+        {/* Copy */}
+        <Tooltip title={isCopied ? "Link copied" : "Copy link"} arrow>
+          <button
+              onClick={() => handleCopy(link.url)}
+              className="relative bg-yellow-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-yellow-600  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
+          >
+            {isCopied ? (
+                <>
+                  <ClipboardCheck size={18} className="group-hover:scale-105 transition-transform" />
+                  <span className="relative z-10">Copied</span>
+                </>
+            ) : (
+                <>
+                  <Clipboard size={18} className="group-hover:scale-105 transition-transform" />
+                  <span className="relative z-10">Copy</span>
+                </>
+            )}
+            <div className="absolute inset-0 bg-yellow-600/10 rounded-lg transition-all duration-300"></div>
+          </button>
+        </Tooltip>
+
+        {/* QR */}
         <div ref={qrRef} className="hidden">
           <QRCodeCanvas value={link.url} size={200} />
         </div>
-        <button
-            onClick={handleDownloadQR}
-            className="relative bg-purple-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-purple-700  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group leading-[1.1]"
-        >
-          <QrCode size={16} />
-          <span>QR Code</span>
-        </button>
-        <button
-          onClick={() => onEdit(link.id)}
-          className="relative bg-gray-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-800  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
-        >
-          <Edit
-            size={16}
-            className="group-hover:scale-105 transition-transform"
-          />
-          <span className="relative z-10">Edit</span>
-          <div className="absolute inset-0 bg-gray-600/40 rounded-lg transition-all duration-300"></div>
-        </button>
-        <button
-          onClick={() => onDelete(link.id)}
-          className="relative bg-red-500 hover:bg-red-800 text-white px-6 py-2.5 rounded-lg font-semibold  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
-        >
-          <Trash2
-            size={16}
-            className="group-hover:scale-105 transition-transform"
-          />
-          <span className="relative z-10">Delete</span>
-          <div className="absolute inset-0 bg-red-600/40 rounded-lg  transition-all duration-300"></div>
-        </button>
+        <Tooltip title="Share via QR" arrow>
+          <button
+              onClick={handleDownloadQR}
+              className="relative bg-purple-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group leading-[1.1]"
+          >
+            <QrCode size={18} />
+            <span>QR</span>
+          </button>
+        </Tooltip>
+
+          <button
+              onClick={() => onEdit(link.id)}
+              className="relative bg-gray-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
+          >
+            <Edit size={18} className="group-hover:scale-105 transition-transform" />
+            <span className="relative z-10">Edit</span>
+            <div className="absolute inset-0 bg-gray-600/40 rounded-lg transition-all duration-300"></div>
+          </button>
+
+          <button
+              onClick={() => onDelete(link.id)}
+              className="relative bg-red-500 hover:bg-red-800 text-white px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
+          >
+            <Trash2 size={18} className="group-hover:scale-105 transition-transform" />
+            <span className="relative z-10">Delete</span>
+            <div className="absolute inset-0 bg-red-600/40 rounded-lg transition-all duration-300"></div>
+          </button>
       </div>
     </div>
   );

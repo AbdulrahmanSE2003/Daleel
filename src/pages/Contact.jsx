@@ -19,8 +19,8 @@ export default function Contact() {
   const onSubmit = async (data) => {
     try {
       await emailjs.send(
-        "service_ujnv4bj",
-        "template_gwdlwae",
+        "service_5630k6g",
+        "template_rumkyog",
         data,
         "nhyoEmWLNjoNInN78"
       );

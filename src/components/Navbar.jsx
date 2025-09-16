@@ -1,12 +1,19 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { LogIn, CircleUser, Menu, X } from "lucide-react";
+import {NavLink, useNavigate} from "react-router-dom";
+import { LogIn, CircleUser, Menu, X,LogOut } from "lucide-react";
+import Tooltip from "@mui/material/Tooltip";
 
 function Navbar() {
   const logged = localStorage.getItem("token");
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
+  function handleLogOut(){
+      localStorage.removeItem("token")
+      navigate("/");
+  }
   return (
+
     <nav className="flex fixed top-0 left-0 w-full h-16 bg-gray-50 z-50 px-4 md:px-8 justify-between items-center shadow">
       {/* Logo */}
       <NavLink to="/" className="text-2xl font-light flex items-center">
@@ -69,7 +76,7 @@ function Navbar() {
           Contact Us
         </NavLink>
 
-        {!logged && (
+        {!logged ? (
           <NavLink
             to="/login"
             className={({ isActive }) =>
@@ -79,9 +86,19 @@ function Navbar() {
             }
             onClick={() => setOpen(false)}
           >
-            <LogIn className="inline-block" size={20} />
+              <Tooltip title="Log-in">
+                  <LogIn className="inline-block" size={20} />
+              </Tooltip>
           </NavLink>
-        )}
+        ) : <button
+            onClick={handleLogOut}
+            className="opacity-85 hover:opacity-100 hover:text-emerald-700 relative group transition duration-300"
+        >
+            <Tooltip title="Log-out">
+                <LogOut className="inline-block" size={20} />
+            </Tooltip>
+        </button>
+        }
       </ul>
     </nav>
   );
