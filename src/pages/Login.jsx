@@ -12,7 +12,7 @@ function Login() {
   return (
     <section
       className={`h-screen bg-gray-50 flex flex-col ${
-        half === "login" ? "md:flex-row" : "lg:flex-row-reverse"
+        half === "login" ? "md:flex-row" : "md:flex-row-reverse"
       } justify-between items-center `}
     >
       {half === "login" ? (
