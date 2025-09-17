@@ -1,0 +1,57 @@
+{
+  "welcome": "مرحبا في مشروعي",
+  "Home": "الرئيسية",
+  "Links": "الروابط",
+  "Contact": "تواصل معنا",
+  "Logout": "تسجيل الخروج",
+  "Login": "تسجيل الدخول",
+  "changeLanguage": "تغيير اللغة",
+  "hero_heading": "احتفظ بكل روابطك في",
+  "hero_highlight": "مكان",
+  "hero_place": "واحد",
+  "hero_description": "دليل هو مساحتك الشخصية لحفظ وتنظيم الروابط المهمة. لن تفقد أي رابط مهم مرة أخرى.",
+  "hero_cta": "ابدأ مجانًا",
+  "features": {
+    "heading": "لماذا تختار",
+    "links_title": "كل روابطك في مكان واحد",
+    "links_desc": "لا مزيد من فقدان الروابط في المحادثات أو البريد الإلكتروني أو الملاحظات العشوائية.",
+    "fast_title": "سريع وسهل",
+    "fast_desc": "الوصول إلى روابطك في ثوانٍ بواجهة بسيطة وسهلة الاستخدام.",
+    "secure_title": "خاص وآمن",
+    "secure_desc": "روابطك تظل آمنة ومتاحة لك فقط، خصوصيتك في أمان."
+  },
+  "howItWorks": {
+    "title": "How Dalil Works",
+    "title_ar": "كيف يعمل دليل",
+
+    "step1": {
+      "title": "Create your account",
+      "title_ar": "أنشئ حسابك",
+      "description": "Sign up in seconds and get started immediately.",
+      "description_ar": "سجل حسابك في ثوانٍ وابدأ مباشرة."
+    },
+    "step2": {
+      "title": "Save your links",
+      "title_ar": "احفظ روابطك",
+      "description": "Add links with one click from anywhere.",
+      "description_ar": "أضف روابطك بنقرة واحدة من أي مكان."
+    },
+    "step3": {
+      "title": "Organize & find easily",
+      "title_ar": "نظم وابحث بسهولة",
+      "description": "Use folders, tags, or search to stay in control.",
+      "description_ar": "استخدم المجلدات، العلامات أو البحث لتبقى مسيطراً."
+    }
+  },
+  "cta": {
+    "heading": "هل أنت مستعد للسيطرة على روابطك؟",
+    "subheading": "ابدأ مع دليل!",
+    "description": "نظم، احفظ، ووصل إلى روابطك بسهولة. احفظها بأمان دائمًا.",
+    "button": "جرب دليل مجانًا"
+  },
+  "footer": {
+    "links_ar": "الروابط",
+    "privacy_ar": "سياسة الخصوصية",
+    "copyright_ar": "© دليل 2025 – جميع الحقوق محفوظة."
+  }
+}

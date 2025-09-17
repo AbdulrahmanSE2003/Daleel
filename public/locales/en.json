@@ -1,0 +1,49 @@
+{
+  "welcome": "Welcome to my project",
+  "Home": "Home",
+  "Links": "Links",
+  "Contact": "Contact Us",
+  "Logout": "Logout",
+  "Login": "Login",
+  "changeLanguage": "Change Language",
+  "hero_heading": "Keep All your links in",
+  "hero_highlight": "One",
+  "hero_place": "Place",
+  "hero_description": "Daleel is your personal space to save and organize the links that matter. Never lose an important link again.",
+  "hero_cta": "Get Started Free",
+  "features": {
+    "heading": "Why choose",
+    "links_title": "All your links in one place",
+    "links_desc": "No more losing links in chats.",
+    "fast_title": "Fast & simple",
+    "fast_desc": "Access your links in seconds with our intuitive interface.",
+    "secure_title": "Private & secure",
+    "secure_desc": "Your links stay safe and accessible only to you."
+  },
+  "howItWorks": {
+    "title": "How Dalil Works",
+    "step1": {
+      "title": "Create your account",
+      "description": "Sign up in seconds and get started immediately."
+    },
+    "step2": {
+      "title": "Save your links",
+      "description": "Add links with one click from anywhere."
+    },
+    "step3": {
+      "title": "Organize & find easily",
+      "description": "Use folders, tags, or search to stay in control."
+    }
+  },
+  "cta": {
+  "heading": "Ready to Take Control of Your Links?",
+  "subheading": "Start with Daleel !",
+  "description": "Organize, save, and access your links effortlessly. Keep them safe forever.",
+  "button": "Try Daleel for Free"
+  },
+  "footer": {
+    "links": "Links",
+    "privacy": "Privacy Policy",
+    "copyright": "© Dalil 2025 – All rights reserved."
+  }
+}
