@@ -114,7 +114,7 @@ export default function HowItWorksGrid() {
         <div className="max-w-7xl mx-auto px-10 md:px-6">
           <h2 className="text-4xl font-bold text-center mb-16">
             {lang === "en" ? "How " : "طريقة عمل "}
-            <span className="text-emerald-500">{lang === "en" ? "Daleel " : "دليل"}</span> {lang === "en" ? "Works ?" : " ؟"}
+            <span className="text-emerald-500">{lang === "en" ? "Daleel " : "دليل"}</span> {lang === "en" ? "Works ?" : "؟"}
           </h2>
 
           <div className="grid md:grid-cols-3 gap-7">

@@ -95,5 +95,17 @@
     "errorMismatch": "Passwords do not match!",
     "success": "Your password has been reset successfully!",
     "login": "Log In"
+  },
+  "auth": {
+    "forgotPassword": "Forgot Password",
+    "forgotPasswordDesc": "Enter your email and we’ll send you a reset link.",
+    "enterEmail": "Enter your email...",
+    "enterEmailError": "Please enter your email!",
+    "resetPassword": "Reset Password",
+    "resetLinkSent": "Done! Check your inbox for the reset link.",
+    "rememberPassword": "Remembered your password?",
+    "login": "Log In",
+    "backToLogin": "Back to Log In",
+    "genericError": "Something went wrong!"
   }
 }
