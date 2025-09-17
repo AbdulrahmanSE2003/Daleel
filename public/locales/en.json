@@ -45,5 +45,27 @@
     "links": "Links",
     "privacy": "Privacy Policy",
     "copyright": "© Dalil 2025 – All rights reserved."
+  },"contact": {
+  "heading": "Contact Us",
+  "reach": "Got a question or feedback? Reach out anytime at",
+  "namePlaceholder": "Your Name",
+  "emailPlaceholder": "Your Email",
+  "messagePlaceholder": "Your Message",
+  "nameError": "Name is required",
+  "emailError": "Email is required",
+  "emailInvalid": "Invalid email",
+  "messageError": "Message is required",
+  "sendBtn": "Send Message",
+  "sending": "Sending...",
+  "successMessage": "Thank you! Your message has been sent successfully. We’ll get back to you soon.",
+  "homeBtn": "Home"
+},
+  "privacy": {
+    "heading": "Privacy Policy",
+    "intro": "At",
+    "intro2": ", we respect your privacy. We don’t collect personal data beyond what’s necessary for using the platform. Your information is safe with us.",
+    "dataUsage": "We don’t sell, share, or misuse your data. Any information you provide (like your email for login) is only used to help you access and enjoy our services.",
+    "simplePolicy": "Since our platform is still simple, we don’t have complicated terms or legal jargon. If we ever update this policy, we’ll make sure to let you know clearly.",
+    "contact": "If you have any questions, feel free to contact us at"
   }
 }

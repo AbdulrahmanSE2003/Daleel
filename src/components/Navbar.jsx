@@ -47,8 +47,8 @@ function Navbar() {
 
             {/* Links */}
             <ul
-                className={`flex flex-col md:flex-row md:items-center gap-6 md:gap-10
-          absolute md:static top-16 left-0 w-full md:w-auto bg-gray-50 md:bg-transparent p-6 pl-12 md:p-0 shadow-xl md:shadow-none 
+                className={`flex flex-col md:flex-row items-end md:items-center gap-6 md:gap-10
+          absolute md:static top-16 left-0 w-full md:w-auto bg-gray-50 md:bg-transparent p-10 md:p-6 pl-12 shadow-xl md:shadow-none 
           transition-all duration-300 ease-in-out 
           ${open ? "block" : "hidden md:flex"}`}
             >
@@ -105,6 +105,7 @@ function Navbar() {
                 ) : (
                     <button
                         onClick={handleLogOut}
+                        style={{textAlign: "inherit"}}
                         className="opacity-85 hover:opacity-100 hover:text-emerald-700 relative group transition duration-300"
                     >
                         <Tooltip title={t("Logout")}>
