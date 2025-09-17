@@ -85,6 +85,15 @@
     "edit": "Edit",
     "delete": "Delete",
     "downloadQR": "Download QR Code"
+  },
+  "reset": {
+    "title": "Reset Password",
+    "subtitle": "Enter your new password below to update your account.",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "button": "Set New Password",
+    "errorMismatch": "Passwords do not match!",
+    "success": "Your password has been reset successfully!",
+    "login": "Log In"
   }
-
 }
