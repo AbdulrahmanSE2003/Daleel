@@ -17,7 +17,7 @@ function Form({ onSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   async function handleForm(e) {
@@ -133,13 +133,13 @@ function Form({ onSwitch }) {
         >
           {loading ? <Loader /> : "Sign In"}
         </button>
-        {/* <button
+        <button
           type="button"
           className="flex items-center justify-center w-full border-2 border-gray-300 rounded-md py-3 px-6 mb-4 hover:bg-gray-100 transition-colors duration-300"
         >
           <FcGoogle className="mr-2 text-xl" />
           Sign in with Google
-        </button> */}
+        </button>
         <p className="text-center text-gray-600">
           Don't have an Account?{" "}
           <Link

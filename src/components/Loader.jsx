@@ -7,7 +7,8 @@ export default function Loader({ width, borderWidth}) {
   return (
     <div className="flex justify-center items-center">
       <div
-        className={`w-${widthClass} h-${widthClass} border-${borderClass} border-gray-300 border-t-emerald-600 rounded-full animate-spin`}
+          style={{width:`${widthClass *4}px`,height: `${widthClass *4}px`, borderWidth:`${borderClass}px`}}
+        className="border-2 border-gray-300 border-t-emerald-600 rounded-full animate-spin"
       ></div>
     </div>
   );
