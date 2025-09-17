@@ -1,18 +1,30 @@
-import { Edit, Trash2, Clipboard, ClipboardCheck,QrCode   } from "lucide-react";
-import {useState, useRef} from "react";
+import {
+  Edit,
+  Trash2,
+  Clipboard,
+  ClipboardCheck,
+  QrCode,
+  X,
+} from "lucide-react";
+import { useState, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import Tooltip from "@mui/material/Tooltip";
+import { useTranslation } from "react-i18next";
 
 function LinkCard({ link, onDelete, onEdit }) {
+  const { t } = useTranslation();
   const [isCopied, setIsCopied] = useState(false);
+  const [isQRModalOpen, setIsQRModalOpen] = useState(false);
   const qrRef = useRef();
 
-  function handleCopy(link){
-    navigator.clipboard.writeText(link).then(() => {
-        setIsCopied(true);
-
-        setTimeout(() =>{setIsCopied(false)}, 3000)
-    }).catch(err => console.log(err))
+  function handleCopy(link) {
+    navigator.clipboard
+        .writeText(link)
+        .then(() => {
+          setIsCopied(true);
+          setTimeout(() => setIsCopied(false), 3000);
+        })
+        .catch((err) => console.log(err));
   }
 
   function handleDownloadQR() {
@@ -20,7 +32,6 @@ function LinkCard({ link, onDelete, onEdit }) {
     const pngUrl = canvas
         .toDataURL("image/png")
         .replace("image/png", "image/octet-stream");
-
     const downloadLink = document.createElement("a");
     downloadLink.href = pngUrl;
     downloadLink.download = `qr-code-${link.title}.png`;
@@ -28,100 +39,148 @@ function LinkCard({ link, onDelete, onEdit }) {
   }
 
   return (
-    <div className="group relative flex flex-col md:flex-row w-full items-start md:items-center justify-between bg-white/95 backdrop-blur-sm shadow-lg rounded-2xl p-6 py-3  hover:shadow-xl  transition-all duration-500 ease-in-out animate-glow-in overflow-hidden border-2 border-transparent hover:border-emerald-500 ">
-      <div className="flex flex-col gap-4 w-full relative z-10">
-        <div className="flex items-center gap-4">
-          <span className="text-3xl transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-400">
-            {link.emoji}
-          </span>
-          <p className="font-sans font-semibold text-gray-900 text-xl md:text-2xl tracking-tight  transition-colors duration-500">
-            {link.title}
-          </p>
-        </div>
+      <>
+        {/* Link Card */}
+        <div className="relative flex flex-col h-full bg-white/70 backdrop-blur-md
+        border border-gray-200 rounded-2xl shadow-md
+        hover:shadow-xl transition-all duration-300 overflow-hidden">
 
-        {link.tags?.length > 0 ? (
-          <div className="flex flex-wrap gap-2 ml-12 md:ml-14">
-            {link.tags.map((tag, idx) => (
-              <span
-                key={idx}
-                className="relative text-xs bg-[#0c5563]/5 text-emerald-800 px-3 py-1.5 rounded-full font-medium border border-[#0c8f63]/30 hover:bg-[#0c8f63]/15 hover:scale-105 transition-all duration-300 group/tag"
+          {/* Header */}
+          <div className="p-5 flex flex-col gap-2 flex-grow">
+            <div className="flex items-center gap-3">
+              <h2 className="text-lg font-semibold text-gray-900 truncate capitalize">
+                {link.title}
+              </h2>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-700 hover:text-emerald-800 transition-colors duration-300 truncate max-w-[180px]"
               >
-                #{typeof tag === "string" ? tag : tag.name}
-                <div className="absolute inset-0 bg-[#0c8f63]/10 rounded-full group-hover/tag:blur-xs transition-all duration-300"></div>
-              </span>
-            ))}
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
+                {link.url}
+              </a>
+              <Tooltip title={isCopied ? t("linkCard.linkCopied") : t("linkCard.copyLink")} arrow>
+                <button
+                    onClick={() => handleCopy(link.url)}
+                    className="flex items-center justify-center p-2 bg-gray-200/90 text-gray-600 rounded-full hover:bg-gray-300/90 transition-all duration-300 transform hover:scale-110"
+                >
+                  {isCopied ? (
+                      <ClipboardCheck size={18} />
+                  ) : (
+                      <Clipboard size={18} />
+                  )}
+                </button>
+              </Tooltip>
+            </div>
 
-      <div className="flex flex-col md:flex-row md:max-h-11 gap-3 w-full md:w-auto mt-4 md:mt-0 relative z-10">
-
-          <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative bg-[#0c8f63] text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-[#0a7a54] transition-all duration-300 transform hover:-translate-y-0.5 group text-center overflow-hidden"
-          >
-            <span className="relative z-10">Open</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0c8f63]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </a>
-
-        {/* Copy */}
-        <Tooltip title={isCopied ? "Link copied" : "Copy link"} arrow>
-          <button
-              onClick={() => handleCopy(link.url)}
-              className="relative bg-yellow-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-yellow-600  transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
-          >
-            {isCopied ? (
-                <>
-                  <ClipboardCheck size={18} className="group-hover:scale-105 transition-transform" />
-                  <span className="relative z-10">Copied</span>
-                </>
-            ) : (
-                <>
-                  <Clipboard size={18} className="group-hover:scale-105 transition-transform" />
-                  <span className="relative z-10">Copy</span>
-                </>
+            {/* Tags */}
+            {link.tags?.length > 0 && (
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {link.tags.map((tag, idx) => (
+                      <span
+                          key={idx}
+                          className="text-xs bg-emerald-100 text-emerald-900 px-2 py-1 rounded-full border border-emerald-100 capitalize "
+                      >
+                  #{typeof tag === "string" ? tag : tag.name}
+                </span>
+                  ))}
+                </div>
             )}
-            <div className="absolute inset-0 bg-yellow-600/10 rounded-lg transition-all duration-300"></div>
-          </button>
-        </Tooltip>
+          </div>
 
-        {/* QR */}
-        <div ref={qrRef} className="hidden">
-          <QRCodeCanvas value={link.url} size={200} />
+          {/* Footer Actions */}
+          <div className="flex items-center justify-between p-4 border-t border-gray-100 bg-gray-50/60">
+            <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm px-4 py-2 rounded-lg font-medium transition-all"
+            >
+              {t("linkCard.open")}
+            </a>
+
+            <div className="flex items-center gap-2">
+              <Tooltip title={t("linkCard.qrCode")} arrow>
+                <button
+                    onClick={() => setIsQRModalOpen(true)}
+                    className="p-2 bg-purple-100 text-purple-700 rounded-full hover:bg-purple-200 transition-all"
+                >
+                  <QrCode size={18} />
+                </button>
+              </Tooltip>
+              <Tooltip title={t("linkCard.edit")} arrow>
+                <button
+                    onClick={() => onEdit(link.id)}
+                    className="p-2 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-all"
+                >
+                  <Edit size={18} />
+                </button>
+              </Tooltip>
+              <Tooltip title={t("linkCard.delete")} arrow>
+                <button
+                    onClick={() => onDelete(link.id)}
+                    className="p-2 bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition-all"
+                >
+                  <Trash2 size={18} />
+                </button>
+              </Tooltip>
+            </div>
+          </div>
         </div>
-        <Tooltip title="Share via QR" arrow>
-          <button
-              onClick={handleDownloadQR}
-              className="relative bg-purple-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group leading-[1.1]"
-          >
-            <QrCode size={18} />
-            <span>QR</span>
-          </button>
-        </Tooltip>
 
-          <button
-              onClick={() => onEdit(link.id)}
-              className="relative bg-gray-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
-          >
-            <Edit size={18} className="group-hover:scale-105 transition-transform" />
-            <span className="relative z-10">Edit</span>
-            <div className="absolute inset-0 bg-gray-600/40 rounded-lg transition-all duration-300"></div>
-          </button>
-
-          <button
-              onClick={() => onDelete(link.id)}
-              className="relative bg-red-500 hover:bg-red-800 text-white px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-1.5 transform hover:-translate-y-0.5 group"
-          >
-            <Trash2 size={18} className="group-hover:scale-105 transition-transform" />
-            <span className="relative z-10">Delete</span>
-            <div className="absolute inset-0 bg-red-600/40 rounded-lg transition-all duration-300"></div>
-          </button>
-      </div>
-    </div>
+        {/* QR Code Modal */}
+        {isQRModalOpen && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 transition-opacity duration-500">
+              <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl max-w-md w-full relative">
+                <button
+                    onClick={() => setIsQRModalOpen(false)}
+                    className="absolute top-4 right-4 text-gray-700 hover:text-gray-900 transition-colors duration-300"
+                >
+                  <X size={24} />
+                </button>
+                <div className="flex flex-col items-center gap-6">
+                  <h4 className="font-sans font-bold text-xl text-gray-900 tracking-tight text-center">
+                    {link.title}
+                  </h4>
+                  <div className="flex items-center gap-3 w-full">
+                    <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-gray-700 hover:text-emerald-900 font-medium transition-colors duration-300 truncate flex-1"
+                    >
+                      {link.url}
+                    </a>
+                    <Tooltip title={isCopied ? t("linkCard.linkCopied") : t("linkCard.copyLink")} arrow>
+                      <button
+                          onClick={() => handleCopy(link.url)}
+                          className="flex items-center justify-center p-2 bg-gray-100/90 text-gray-600 rounded-full hover:bg-gray-200/90 transition-all duration-300 transform hover:scale-110"
+                      >
+                        {isCopied ? (
+                            <ClipboardCheck size={18} />
+                        ) : (
+                            <Clipboard size={18} />
+                        )}
+                      </button>
+                    </Tooltip>
+                  </div>
+                  <div ref={qrRef} className="p-4 bg-white rounded-xl shadow-inner">
+                    <QRCodeCanvas value={link.url} size={180} />
+                  </div>
+                  <button
+                      onClick={handleDownloadQR}
+                      className="bg-gradient-to-r from-green-700 to-green-800 text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    {t("linkCard.downloadQR")}
+                  </button>
+                </div>
+              </div>
+            </div>
+        )}
+      </>
   );
 }
 

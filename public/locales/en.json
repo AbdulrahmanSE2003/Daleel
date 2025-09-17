@@ -67,5 +67,24 @@
     "dataUsage": "We don’t sell, share, or misuse your data. Any information you provide (like your email for login) is only used to help you access and enjoy our services.",
     "simplePolicy": "Since our platform is still simple, we don’t have complicated terms or legal jargon. If we ever update this policy, we’ll make sure to let you know clearly.",
     "contact": "If you have any questions, feel free to contact us at"
+  },
+  "linksPage": {
+    "welcome": "Welcome Back!",
+    "search_placeholder": "Search...",
+    "add_button": "Add Link +",
+    "empty": {
+      "title": "No links yet",
+      "subtitle": "Click \"Add Link +\" to create your first one."
+    }
+  },
+  "linkCard": {
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied",
+    "open": "Open",
+    "qrCode": "QR Code",
+    "edit": "Edit",
+    "delete": "Delete",
+    "downloadQR": "Download QR Code"
   }
+
 }
