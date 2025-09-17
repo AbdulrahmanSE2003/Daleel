@@ -21,21 +21,29 @@ i18n
             loadPath: "/locales/{{lng}}.json",
         },
         detection: {
-            // نخلي الـ localStorage الأولوية
             order: ["localStorage", "navigator"],
             caches: ["localStorage"],
         },
     });
 
-// 🔥 هنا نربط اللغة بالـ <html dir>
+// 🔥 ربط اللغة بالـ <html dir> + body class
 i18n.on("languageChanged", (lng) => {
     if (typeof document !== "undefined") {
         const html = document.documentElement;
+        const body = document.body;
 
-        // direction: RTL للغة العربية، LTR للباقي
         const isRTL = ["ar", "he", "fa"].includes(lng);
+
+        // direction للـ html
         html.setAttribute("dir", isRTL ? "rtl" : "ltr");
         html.setAttribute("lang", lng);
+
+        // class على الـ body
+        if (isRTL) {
+            body.classList.add("rtl");
+        } else {
+            body.classList.remove("rtl");
+        }
     }
 });
 

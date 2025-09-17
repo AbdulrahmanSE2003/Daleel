@@ -107,5 +107,55 @@
     "login": "Log In",
     "backToLogin": "Back to Log In",
     "genericError": "Something went wrong!"
+  },
+  "loginHalf": {
+    "title": "Welcome Back!",
+    "subtitle": "Sign in to access your personal space and keep all your links organized, secure, and easy to manage."
+  },
+  "form": {
+    "email": "E-Mail",
+    "emailPlaceholder": "Enter your email...",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password...",
+    "forgetPassword": "Forget Password?",
+    "signIn": "Sign In",
+    "noAccount": "Don't have an Account?",
+    "signUp": "Sign Up",
+    "errors": {
+      "required": "All fields are required!",
+      "passwordLength": "Password must be 8 or more characters.",
+      "loginFailed": "Login failed. Check your credentials.",
+      "google": "Google login failed. Try again."
+    }
+  },
+  "login": {
+    "keepOrganized": "Keep everything you care about organized and accessible.",
+    "noLinkLost": "Daleel makes sure no important link ever gets lost again.",
+    "yourControl": "Your links. Your control. Your Daleel."
+  },
+  "signup": {
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "placeholders": {
+      "name": "Enter your name...",
+      "email": "Enter your email...",
+      "password": "Enter your password...",
+      "confirmPassword": "Confirm your password..."
+    },
+    "buttons": {
+      "signup": "Sign Up",
+      "signin": "Sign In"
+    },
+    "errors": {
+      "required": "All fields are required!",
+      "passwordLength": "Password must be 8 or more characters.",
+      "passwordMismatch": "Passwords do not match!",
+      "generic": "Registration failed. Check your inputs."
+    },
+    "alreadyAccount": "Already have an Account?"
   }
 }

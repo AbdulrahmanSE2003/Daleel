@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Loader";
 import ErrorToast from "../ErrorToast";
+import { useTranslation } from "react-i18next";
 
 const BASE_API = "https://dalil-backend-production.up.railway.app/api/";
 
 function Form({ onSwitch }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +19,7 @@ function Form({ onSwitch }) {
 
   // ✅ Google login callback
   function handleGoogleResponse(response) {
-    const token = response.credential; // ده الـ ID token من جوجل
+    const token = response.credential;
 
     axios
         .post(`${BASE_API}login/google`, { token })
@@ -30,9 +31,7 @@ function Form({ onSwitch }) {
           }
         })
         .catch((err) => {
-          setError(
-              err.response?.data?.message || "Google login failed. Try again."
-          );
+          setError(err.response?.data?.message || t("form.errors.google"));
         });
   }
 
@@ -56,11 +55,11 @@ function Form({ onSwitch }) {
     e.preventDefault();
 
     if (!email || !password) {
-      setError("All fields are required!");
+      setError(t("form.errors.required"));
       return;
     }
     if (password.length < 8) {
-      setError("Password must be 8 or more characters.");
+      setError(t("form.errors.passwordLength"));
       return;
     }
 
@@ -77,10 +76,7 @@ function Form({ onSwitch }) {
         navigate("/links");
       }
     } catch (err) {
-      setError(
-          err.response?.data?.message ||
-          "Login failed. Check your credentials."
-      );
+      setError(err.response?.data?.message || t("form.errors.loginFailed"));
     } finally {
       setLoading(false);
     }
@@ -100,14 +96,14 @@ function Form({ onSwitch }) {
                 htmlFor="email"
                 className=" absolute -top-8 font-normal text-gray-900"
             >
-              E-Mail
+              {t("form.email")}
             </label>
             <input
                 type="text"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email..."
+                placeholder={t("form.emailPlaceholder")}
                 className="p-2 pl-10 w-full outline-0"
             />
           </div>
@@ -122,15 +118,15 @@ function Form({ onSwitch }) {
                 htmlFor="password"
                 className=" absolute -top-8 font-normal text-gray-900"
             >
-              Password
+              {t("form.password")}
             </label>
             <input
                 type={showPassword ? "text" : "password"}
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your Password..."
-                className="p-2 pl-10 w-full outline-0"
+                placeholder={t("form.passwordPlaceholder")}
+                className="p-2 px-10 w-full outline-0"
             />
             {showPassword ? (
                 <EyeOff
@@ -151,35 +147,28 @@ function Form({ onSwitch }) {
               to="/forget"
               className="text-gray-900 hover:text-emerald-800 transition-colors duration-300 absolute right-0 mb-6"
           >
-            Forget Password?
+            {t("form.forgetPassword")}
           </Link>
 
-          {error && <ErrorToast message={error} onClose={() => setError("")} />}
-            {/* email + password ... زي ما عندك */}
-
-            <button
-                className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 px-6 rounded-lg text-white font-semibold mt-10 mb-5"
-                disabled={loading}
-            >
-              {loading ? <Loader /> : "Sign In"}
-            </button>
-
-          {/* زرار Google */}
-          <div
-              id="google-login-btn"
-              className="mb-4 "
+          <button
+              className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 px-6 rounded-lg text-white font-semibold mt-10 mb-5"
+              disabled={loading}
           >
-          </div>
+            {loading ? <Loader /> : t("form.signIn")}
+          </button>
 
-            <p className="text-center text-gray-600">
-              Don't have an Account?{" "}
-              <Link
-                  className="text-emerald-700 ml-1 hover:text-emerald-900 transition-colors duration-300"
-                  onClick={onSwitch}
-              >
-                Sign Up
-              </Link>
-            </p>
+          {/* Google Button */}
+          <div id="google-login-btn" className="mb-4"></div>
+
+          <p className="text-center text-gray-600">
+            {t("form.noAccount")}{" "}
+            <Link
+                className="text-emerald-700 ml-1 hover:text-emerald-900 transition-colors duration-300"
+                onClick={onSwitch}
+            >
+              {t("form.signUp")}
+            </Link>
+          </p>
         </form>
       </>
   );
