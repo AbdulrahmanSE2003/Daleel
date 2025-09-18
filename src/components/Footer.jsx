@@ -30,7 +30,7 @@ export default function Footer() {
                             ? t("footer.developed_by_ar")
                             : t("footer.developed_by")}
                         <a
-                            href="https://github.com/abdo"
+                            href="https://mnmlst.netlify.app/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-white text-gray-400 transition-colors duration-300"
@@ -39,7 +39,7 @@ export default function Footer() {
                         </a>
                         &
                         <a
-                            href="https://github.com/someone"
+                            href="https://github.com/fathallah7"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-white text-gray-400 transition-colors duration-300 "
