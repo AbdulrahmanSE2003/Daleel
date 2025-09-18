@@ -46,7 +46,7 @@ function SignupHalf({ onSwitch }) {
         /* global google */
         if (window.google) {
             google.accounts.id.initialize({
-                client_id: "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+                client_id: "731351321833-a0rbcof0j7gh352jevfpok78iq1fvrl3.apps.googleusercontent.com",
                 callback: handleGoogleResponse,
             });
         }
