@@ -168,5 +168,43 @@
       "generic": "فشل التسجيل. تحقق من البيانات."
     },
     "alreadyAccount": "هل لديك حساب بالفعل؟"
+  },
+  "addLink": {
+    "title": "إضافة رابط جديد",
+    "labels": {
+      "name": "الاسم",
+      "url": "الرابط",
+      "tags": "الوسوم"
+    },
+    "placeholders": {
+      "name": "اسم الرابط...",
+      "url": "https://example.com",
+      "tags": "اكتب الوسم واضغط Enter"
+    },
+    "buttons": {
+      "save": "حفظ"
+    },
+    "invalidUrl": "يرجى إدخال رابط صالح.",
+    "saveFailed": "فشل حفظ الرابط."
+  },
+  "editLink": {
+    "title": "تعديل الرابط",
+    "labels": {
+      "name": "الاسم",
+      "url": "الرابط",
+      "tags": "الوسوم",
+      "emoji": "رمز تعبيري"
+    },
+    "placeholders": {
+      "name": "اسم الرابط...",
+      "url": "https://example.com",
+      "tags": "اكتب الوسم واضغط Enter",
+      "emoji": "اختر رمز تعبيري..."
+    },
+    "buttons": {
+      "save": "حفظ",
+      "cancel": "إلغاء"
+    },
+    "updateFailed": "فشل تحديث الرابط."
   }
 }

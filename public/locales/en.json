@@ -159,5 +159,43 @@
       "generic": "Registration failed. Check your inputs."
     },
     "alreadyAccount": "Already have an Account?"
+  },
+  "addLink": {
+    "title": "Add New Link",
+    "labels": {
+      "name": "Name",
+      "url": "URL",
+      "tags": "Tags"
+    },
+    "placeholders": {
+      "name": "Link name...",
+      "url": "https://example.com",
+      "tags": "Type tag & press Enter"
+    },
+    "buttons": {
+      "save": "Save"
+    },
+    "invalidUrl": "Please enter a valid URL.",
+    "saveFailed": "Failed to save link."
+  },
+  "editLink": {
+    "title": "Edit Link",
+    "labels": {
+      "name": "Name",
+      "url": "URL",
+      "tags": "Tags",
+      "emoji": "Emoji"
+    },
+    "placeholders": {
+      "name": "Link name...",
+      "url": "https://example.com",
+      "tags": "Type tag & press Enter",
+      "emoji": "Select an emoji..."
+    },
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "updateFailed": "Failed to update link."
   }
 }
