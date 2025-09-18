@@ -25,7 +25,7 @@ export default function Footer() {
                             : t("footer.copyright")}
                     </p>
                     <span className="hidden md:inline">|</span>
-                    <p className="text-gray-400 flex gap-1">
+                    <p className="text-gray-300 flex gap-1">
                         {i18n.language === "ar"
                             ? t("footer.developed_by_ar")
                             : t("footer.developed_by")}
@@ -33,18 +33,18 @@ export default function Footer() {
                             href="https://github.com/abdo"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-white transition"
+                            className="hover:text-white text-gray-400 transition-colors duration-300"
                         >
-                            Abdo
+                            Mnmlst
                         </a>
                         &
                         <a
                             href="https://github.com/someone"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-white transition"
+                            className="hover:text-white text-gray-400 transition-colors duration-300 "
                         >
-                            Someone
+                            Abdallah
                         </a>
                     </p>
                 </div>

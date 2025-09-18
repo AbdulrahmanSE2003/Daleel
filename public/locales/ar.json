@@ -52,7 +52,9 @@
   "footer": {
     "links_ar": "الروابط",
     "privacy_ar": "سياسة الخصوصية",
-    "copyright_ar": "© دليل 2025 – جميع الحقوق محفوظة."
+    "copyright_ar": "© دليل 2025 – جميع الحقوق محفوظة.",
+    "developed_by": "Developed by",
+    "developed_by_ar": "تطوير بواسطة"
   },
   "contact": {
     "heading": "تواصل معنا",
