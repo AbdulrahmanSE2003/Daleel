@@ -119,6 +119,7 @@
     "passwordPlaceholder": "Enter your password...",
     "forgetPassword": "Forget Password?",
     "signIn": "Sign In",
+    "signInGoogle": "Sign in with Google",
     "noAccount": "Don't have an Account?",
     "signUp": "Sign Up",
     "errors": {
@@ -148,7 +149,8 @@
     },
     "buttons": {
       "signup": "Sign Up",
-      "signin": "Sign In"
+      "signin": "Sign In",
+      "signupGoogle": "Sign up with Google"
     },
     "errors": {
       "required": "All fields are required!",

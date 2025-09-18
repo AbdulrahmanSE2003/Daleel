@@ -123,17 +123,18 @@
   },
   "form": {
     "email": "البريد الإلكتروني",
-    "emailPlaceholder": "أدخل بريدك الإلكتروني...",
+    "emailPlaceholder": "ادخل بريدك الإلكتروني...",
     "password": "كلمة المرور",
-    "passwordPlaceholder": "أدخل كلمة المرور...",
-    "forgetPassword": "هل نسيت كلمة المرور؟",
+    "passwordPlaceholder": "ادخل كلمة المرور...",
+    "forgetPassword": "نسيت كلمة المرور؟",
     "signIn": "تسجيل الدخول",
+    "signInGoogle": "تسجيل الدخول عبر جوجل",
     "noAccount": "ليس لديك حساب؟",
     "signUp": "إنشاء حساب",
     "errors": {
       "required": "جميع الحقول مطلوبة!",
       "passwordLength": "يجب أن تكون كلمة المرور 8 أحرف أو أكثر.",
-      "loginFailed": "فشل تسجيل الدخول. تحقق من البيانات.",
+      "loginFailed": "فشل تسجيل الدخول. تحقق من بياناتك.",
       "google": "فشل تسجيل الدخول عبر جوجل. حاول مرة أخرى."
     }
   },
@@ -157,7 +158,8 @@
     },
     "buttons": {
       "signup": "سجل الآن",
-      "signin": "تسجيل الدخول"
+      "signin": "تسجيل الدخول",
+      "signupGoogle": "التسجيل عبر جوجل"
     },
     "errors": {
       "required": "جميع الحقول مطلوبة!",
