@@ -39,7 +39,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
       tags: linkTags,
     };
 
-    setLinks([...links, newLink]);
+    setLinks([ newLink, ...links]);
     onClose(false);
 
     try {
@@ -58,8 +58,11 @@ function AddLinkModal({ onClose, setLinks, links }) {
       );
 
       setLinks((prev) =>
-          prev.map((link) => (link.id === newLink.id ? res.data : link))
+          prev.map((link) =>
+              link.id === newLink.id ? { ...newLink, ...res.data } : link
+          )
       );
+
     } catch (error) {
       console.error("Failed to save link:", error);
     }

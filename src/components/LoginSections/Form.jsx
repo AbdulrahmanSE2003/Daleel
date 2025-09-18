@@ -104,7 +104,7 @@ function Form({ onSwitch }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder={t("form.passwordPlaceholder")}
-                className="p-2 pl-10 w-full outline-0 focus:border-emerald-600 focus:placeholder:opacity-0"
+                className="p-2 px-10 w-full outline-0 focus:border-emerald-600 focus:placeholder:opacity-0"
             />
             {showPassword ? (
                 <EyeOff className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setShowPassword(!showPassword)} />
