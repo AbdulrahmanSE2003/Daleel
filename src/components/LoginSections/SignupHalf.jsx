@@ -25,30 +25,37 @@ function SignupHalf({ onSwitch }) {
     const [error, setError] = useState("");
 
     // ================= Google Sign-In =================
-    function handleGoogleResponse(response) {
+    async function handleGoogleResponse(response) {
         const token = response.credential;
 
-        axios
-            .post(`${BASE_API}login/google`, { token })
-            .then((res) => {
-                const jwt = res.data.token || res.data.access_token;
-                if (jwt) {
-                    localStorage.setItem("token", jwt);
-                    navigate("/links");
-                }
-            })
-            .catch((err) => {
-                setError(err.response?.data?.message || "Google signup/login failed.");
-            });
+        try {
+            const res = await axios.post(`${BASE_API}login/google`, { token });
+            const jwt = res.data.token || res.data.access_token;
+            if (jwt) {
+                localStorage.setItem("token", jwt);
+                navigate("/links");
+            }
+        } catch (err) {
+            setError(
+                err.response?.data?.message || "Google signup/login failed."
+            );
+        }
     }
 
     useEffect(() => {
         /* global google */
         if (window.google) {
-            google.accounts.id.initialize({
-                client_id: "731351321833-a0rbcof0j7gh352jevfpok78iq1fvrl3.apps.googleusercontent.com",
+            window.google.accounts.id.initialize({
+                client_id:
+                    "731351321833-a0rbcof0j7gh352jevfpok78iq1fvrl3.apps.googleusercontent.com",
                 callback: handleGoogleResponse,
             });
+
+            // ✅ Render Google button
+            window.google.accounts.id.renderButton(
+                document.getElementById("google-signup-btn"),
+                { theme: "outline", size: "large" }
+            );
         }
     }, []);
 
@@ -95,11 +102,22 @@ function SignupHalf({ onSwitch }) {
         <>
             {error && <ErrorToast message={error} onClose={() => setError("")} />}
             <div className="bg-gray-50 w-full h-full ps-16 p-10 py-6 flex flex-col justify-start items-between gap-6">
-                <form onSubmit={handleRegister} className="my-8 relative flex flex-col gap-6">
+                <form
+                    onSubmit={handleRegister}
+                    className="my-8 relative flex flex-col gap-6"
+                >
                     {/* Name */}
                     <div className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-6">
-                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-emerald-600 transition duration-300" size={20} />
-                        <label htmlFor="name" className="absolute -top-8 font-normal text-gray-900">{t("signup.labels.name")}</label>
+                        <User
+                            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-emerald-600 transition duration-300"
+                            size={20}
+                        />
+                        <label
+                            htmlFor="name"
+                            className="absolute -top-8 font-normal text-gray-900"
+                        >
+                            {t("signup.labels.name")}
+                        </label>
                         <input
                             type="text"
                             name="name"
@@ -113,8 +131,16 @@ function SignupHalf({ onSwitch }) {
 
                     {/* Email */}
                     <div className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-6">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-emerald-600 transition duration-300" size={20} />
-                        <label htmlFor="email" className="absolute -top-8 font-normal text-gray-900">{t("signup.labels.email")}</label>
+                        <Mail
+                            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-emerald-600 transition duration-300"
+                            size={20}
+                        />
+                        <label
+                            htmlFor="email"
+                            className="absolute -top-8 font-normal text-gray-900"
+                        >
+                            {t("signup.labels.email")}
+                        </label>
                         <input
                             type="text"
                             name="email"
@@ -128,8 +154,16 @@ function SignupHalf({ onSwitch }) {
 
                     {/* Password */}
                     <div className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-6 select-none">
-                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-emerald-600 transition duration-300" size={20} />
-                        <label htmlFor="password" className="absolute -top-8 font-normal text-gray-900">{t("signup.labels.password")}</label>
+                        <Lock
+                            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-emerald-600 transition duration-300"
+                            size={20}
+                        />
+                        <label
+                            htmlFor="password"
+                            className="absolute -top-8 font-normal text-gray-900"
+                        >
+                            {t("signup.labels.password")}
+                        </label>
                         <input
                             type={showPassword ? "text" : "password"}
                             name="password"
@@ -140,16 +174,32 @@ function SignupHalf({ onSwitch }) {
                             className="p-2 px-10 w-full focus:border-emerald-600 outline-0 focus:placeholder:opacity-0"
                         />
                         {showPassword ? (
-                            <EyeOff className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setShowPassword(!showPassword)} />
+                            <EyeOff
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+                                size={20}
+                                onClick={() => setShowPassword(!showPassword)}
+                            />
                         ) : (
-                            <Eye className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setShowPassword(!showPassword)} />
+                            <Eye
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+                                size={20}
+                                onClick={() => setShowPassword(!showPassword)}
+                            />
                         )}
                     </div>
 
                     {/* Confirm Password */}
                     <div className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-4 select-none">
-                        <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-emerald-600 transition duration-300" size={20} />
-                        <label htmlFor="confirmPassword" className="absolute -top-8 font-normal text-gray-900">{t("signup.labels.confirmPassword")}</label>
+                        <Lock
+                            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-emerald-600 transition duration-300"
+                            size={20}
+                        />
+                        <label
+                            htmlFor="confirmPassword"
+                            className="absolute -top-8 font-normal text-gray-900"
+                        >
+                            {t("signup.labels.confirmPassword")}
+                        </label>
                         <input
                             type={showConfirm ? "text" : "password"}
                             name="confirmPassword"
@@ -160,25 +210,35 @@ function SignupHalf({ onSwitch }) {
                             className="p-2 px-10 w-full focus:border-emerald-600 outline-0 focus:placeholder:opacity-0"
                         />
                         {showConfirm ? (
-                            <EyeOff className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setShowConfirm(!showConfirm)} />
+                            <EyeOff
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+                                size={20}
+                                onClick={() => setShowConfirm(!showConfirm)}
+                            />
                         ) : (
-                            <Eye className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setShowConfirm(!showConfirm)} />
+                            <Eye
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+                                size={20}
+                                onClick={() => setShowConfirm(!showConfirm)}
+                            />
                         )}
                     </div>
 
                     {/* Sign Up Button */}
-                    <button className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 px-6 rounded-lg text-white font-semibold" disabled={loading}>
+                    <button
+                        className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 px-6 rounded-lg text-white font-semibold"
+                        disabled={loading}
+                    >
                         {loading ? <Loader /> : t("signup.buttons.signup")}
                     </button>
 
                     {/* Google Sign-In */}
-                    <button
-                        type="button"
-                        onClick={() => google.accounts.id.prompt()}
-                        className="flex items-center justify-center w-full border-2 border-gray-300 rounded-md py-3 px-6 mt-4 hover:bg-gray-100 transition-colors duration-300"
+                    <div
+                        id="google-signup-btn"
                     >
-                        <FcGoogle className="mr-2 " /> {t("signup.buttons.signupGoogle") || "Sign up with Google"}
-                    </button>
+                        <FcGoogle className="mr-2 " />
+                        {t("signup.buttons.signupGoogle") || "Sign up with Google"}
+                    </div>
 
                     {/* Already have account */}
                     <p className="text-center text-gray-600 mt-4">

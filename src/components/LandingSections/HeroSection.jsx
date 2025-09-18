@@ -39,7 +39,7 @@ function HeroSection() {
 
         {/* Main Hero */}
         <div
-            className={`relative flex flex-col md:flex-row justify-center items-center min-h-screen gap-8 md:gap-16 px-4 sm:px-8 md:px-16 lg:px-24 transition-all duration-1000 ease-in-out ${
+            className={`relative flex flex-col md:flex-row justify-between items-center min-h-screen gap-8 md:gap-16 px-4 sm:px-8 md:px-16 lg:px-24 transition-all duration-1000 ease-in-out ${
                 showSplash ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
             }`}
         >
@@ -68,7 +68,7 @@ function HeroSection() {
           </div>
 
           {/* Right Image */}
-          <div className="w-full hidden md:block md:w-1/2 flex justify-center items-center z-10 relative">
+          <div className="w-full hidden  md:w-1/2 md:flex justify-center items-center z-10 relative">
             <div className="relative w-4/5 sm:w-3/4 md:w-3/5 group">
               <img
                   src="/6f746b46-3f6a-433c-9258-1167b211a14d_removalai_preview.png"
