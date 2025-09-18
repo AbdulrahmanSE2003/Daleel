@@ -21,30 +21,37 @@ function Form({ onSwitch }) {
   const [error, setError] = useState("");
 
   // ================= Google Sign-In =================
-  function handleGoogleResponse(response) {
+  async function handleGoogleResponse(response) {
+    console.log("Google ID Token:", response.credential);
     const token = response.credential;
 
-    axios
-        .post(`${BASE_API}login/google`, { token })
-        .then((res) => {
-          const jwt = res.data.token || res.data.access_token;
-          if (jwt) {
-            localStorage.setItem("token", jwt);
-            navigate("/links");
-          }
-        })
-        .catch(() => {
-          setError(t("form.errors.google"));
-        });
+    try {
+      const res = await axios.post(`${BASE_API}login/google`, { token });
+      const jwt = res.data.token || res.data.access_token;
+
+      if (jwt) {
+        localStorage.setItem("token", jwt);
+        navigate("/links");
+      }
+    } catch {
+      setError(t("form.errors.google"));
+    }
   }
 
   useEffect(() => {
     /* global google */
     if (window.google) {
-      google.accounts.id.initialize({
-        client_id: "731351321833-a0rbcof0j7gh352jevfpok78iq1fvrl3.apps.googleusercontent.com",
+      window.google.accounts.id.initialize({
+        client_id:
+            "731351321833-a0rbcof0j7gh352jevfpok78iq1fvrl3.apps.googleusercontent.com",
         callback: handleGoogleResponse,
       });
+
+      // ✅ Render Google button inside our div
+      window.google.accounts.id.renderButton(
+          document.getElementById("google-login-btn"),
+          { theme: "outline", size: "large" }
+      );
     }
   }, []);
 
@@ -82,8 +89,16 @@ function Form({ onSwitch }) {
         <form onSubmit={handleForm} className="my-8 relative flex flex-col gap-6">
           {/* Email */}
           <div className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-6">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <label htmlFor="email" className="absolute -top-8 font-normal text-gray-900">{t("form.email")}</label>
+            <Mail
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={20}
+            />
+            <label
+                htmlFor="email"
+                className="absolute -top-8 font-normal text-gray-900"
+            >
+              {t("form.email")}
+            </label>
             <input
                 type="text"
                 id="email"
@@ -96,8 +111,16 @@ function Form({ onSwitch }) {
 
           {/* Password */}
           <div className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-4 select-none">
-            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <label htmlFor="password" className="absolute -top-8 font-normal text-gray-900">{t("form.password")}</label>
+            <Lock
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={20}
+            />
+            <label
+                htmlFor="password"
+                className="absolute -top-8 font-normal text-gray-900"
+            >
+              {t("form.password")}
+            </label>
             <input
                 type={showPassword ? "text" : "password"}
                 id="password"
@@ -107,35 +130,52 @@ function Form({ onSwitch }) {
                 className="p-2 px-10 w-full outline-0 focus:border-emerald-600 focus:placeholder:opacity-0"
             />
             {showPassword ? (
-                <EyeOff className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setShowPassword(!showPassword)} />
+                <EyeOff
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+                    size={20}
+                    onClick={() => setShowPassword(!showPassword)}
+                />
             ) : (
-                <Eye className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" size={20} onClick={() => setShowPassword(!showPassword)} />
+                <Eye
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"
+                    size={20}
+                    onClick={() => setShowPassword(!showPassword)}
+                />
             )}
           </div>
 
           {/* Sign In Button */}
-          <button className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 px-6 rounded-lg text-white font-semibold" disabled={loading}>
+          <button
+              className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 px-6 rounded-lg text-white font-semibold"
+              disabled={loading}
+          >
             {loading ? <Loader /> : t("form.signIn")}
           </button>
 
           {/* Google Sign-In */}
-          <button
-              type="button"
-              onClick={() => google.accounts.id.prompt()}
-              className="flex items-center justify-center w-full border-2 border-gray-300 rounded-md py-3 px-6 mt-4 hover:bg-gray-100 transition-colors duration-300"
+          <div
+              id="google-login-btn"
           >
-            <FcGoogle className="mr-2 text-xl" /> {t("form.signInGoogle")}
-          </button>
+            {/* Placeholder for Google button */}
+            <FcGoogle className="mr-2 text-xl" />
+            {t("form.signInGoogle")}
+          </div>
 
           {/* Forget Password */}
-          <Link to="/forget" className="text-gray-900 hover:text-emerald-800 transition-colors duration-300 mt-2">
+          <Link
+              to="/forget"
+              className="text-gray-900 hover:text-emerald-800 transition-colors duration-300 mt-2"
+          >
             {t("form.forgetPassword")}
           </Link>
 
           {/* Switch to SignUp */}
           <p className="text-center text-gray-600">
             {t("form.noAccount")}{" "}
-            <Link className="text-emerald-700 ml-1 hover:text-emerald-900 transition-colors duration-300" onClick={onSwitch}>
+            <Link
+                className="text-emerald-700 ml-1 hover:text-emerald-900 transition-colors duration-300"
+                onClick={onSwitch}
+            >
               {t("form.signUp")}
             </Link>
           </p>
