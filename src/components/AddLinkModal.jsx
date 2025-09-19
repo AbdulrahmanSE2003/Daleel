@@ -32,14 +32,13 @@ function AddLinkModal({ onClose, setLinks, links }) {
     }
 
     const newLink = {
-      id: crypto.randomUUID(),
       title: linkName,
       url: linkUrl,
-      emoji: emoji,
+      emoji,
       tags: linkTags,
     };
 
-    setLinks([ newLink, ...links]);
+    setLinks([ ...links, newLink]);
     onClose(false);
 
     try {
@@ -49,7 +48,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
             title: linkName,
             url: linkUrl,
             tags: linkTags,
-            emoji,
+            emoji: emoji,
           },
           {
             headers: {
@@ -60,7 +59,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
 
       setLinks((prev) =>
           prev.map((link) =>
-              link.id === newLink.id ? { ...newLink, ...res.data } : link
+              link.id === newLink.id ? { ...res.data, ...newLink, } : link
           )
       );
 

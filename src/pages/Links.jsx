@@ -29,6 +29,8 @@ function Links() {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log("Response from API:", res); // 🖐 هنا تطبع الريسبونس كامل
+        console.log("Response data:", res.data); // 🖐 هنا تطبع الداتا بس
         setLinks(res.data);
       } catch (error) {
         console.log(error);

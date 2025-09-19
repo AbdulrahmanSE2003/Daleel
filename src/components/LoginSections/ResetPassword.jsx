@@ -8,11 +8,11 @@ const BASE_API = "https://dalil-backend-production.up.railway.app/api/";
 
 function ResetPassword() {
   const { t } = useTranslation();
-  const location = useLocation();
 
   // استخراج email و token من URL
   const [searchParams] = useSearchParams();
   const emailFromLink = searchParams.get("email");
+  localStorage.removeItem("resetToken"); // امسح التوكن من LocalStorage بعد النجاح
   const tokenFromLink = searchParams.get("token");
 
   const savedToken = localStorage.getItem("resetToken");
