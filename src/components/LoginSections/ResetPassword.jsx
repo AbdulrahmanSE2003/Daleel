@@ -9,14 +9,12 @@ const BASE_API = "https://dalil-backend-production.up.railway.app/api/";
 function ResetPassword() {
   const { t } = useTranslation();
 
-  // استخراج email و token من URL
   const [searchParams] = useSearchParams();
   const emailFromLink = searchParams.get("email");
-  localStorage.removeItem("resetToken"); // امسح التوكن من LocalStorage بعد النجاح
   const tokenFromLink = searchParams.get("token");
 
-  const savedToken = localStorage.getItem("resetToken");
-
+  // تنظيف أي توكن قديم
+  localStorage.removeItem("resetToken");
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,15 +24,6 @@ function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  if (localStorage.removeItem("resetToken")&&  tokenFromLink !== savedToken) {
-    // التوكن مش صح → ما تخليش المستخدم يعدل الباسورد
-    return <div className="bg-green-50 bg-opacity-80 p-4 flex items-center gap-3 shadow-md rounded-2xl border border-green-200 mt-4 animate-fadeIn">
-      <span className="text-green-600 text-2xl">✅</span>
-      <p className="text-green-700 font-medium">
-        Invalid token or Expired link. Please request a new password reset.
-      </p>
-    </div>;
-  }
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -46,15 +35,13 @@ function ResetPassword() {
 
     try {
       await axios.post(`${BASE_API}reset-password`, {
-        emailFromLink,
-        tokenFromLink,
+        email: emailFromLink,
         password,
-        password_confirmation : confirmPassword,
+        password_confirmation: confirmPassword,
       });
 
       setSubmitted(true);
       setShowError(false);
-      localStorage.removeItem("resetToken"); // امسح التوكن من LocalStorage بعد النجاح
     } catch (error) {
       console.error("Reset error:", error);
       setShowError(true);
@@ -137,24 +124,21 @@ function ResetPassword() {
                   )}
                 </div>
 
-                {/* Button */}
                 <button className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 rounded-lg text-white font-semibold mt-4">
                   {t("reset.button")}
                 </button>
               </>
           )}
 
-          {/* Error Message */}
           {showError && (
-              <div className="bg-red-50 bg-opacity-80 p-4 flex items-center gap-3 shadow-md rounded-2xl border border-red-200 mt-4 animate-fadeIn">
+              <div className="bg-red-50 p-4 flex items-center gap-3 rounded-2xl border border-red-200 mt-4 animate-fadeIn">
                 <p className="text-red-700 font-medium">{errorMessage}</p>
               </div>
           )}
 
-          {/* Success Message */}
           {submitted && (
               <>
-                <div className="bg-green-50 bg-opacity-80 p-4 flex items-center gap-3 shadow-md rounded-2xl border border-green-200 mt-4 animate-fadeIn">
+                <div className="bg-green-50 p-4 flex items-center gap-3 rounded-2xl border border-green-200 mt-4 animate-fadeIn">
                   <span className="text-green-600 text-2xl">✅</span>
                   <p className="text-green-700 font-medium">
                     {t("reset.success")}
