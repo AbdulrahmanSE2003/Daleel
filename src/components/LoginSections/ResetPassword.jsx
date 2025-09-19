@@ -17,7 +17,7 @@ function ResetPassword() {
 
   const savedToken = localStorage.getItem("resetToken");
 
-  if (tokenFromLink !== savedToken) {
+  if (localStorage.removeItem("resetToken")&&  tokenFromLink !== savedToken) {
     // التوكن مش صح → ما تخليش المستخدم يعدل الباسورد
     return <p>Invalid or expired link</p>;
   }
