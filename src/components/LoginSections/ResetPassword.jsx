@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Lock, Eye, EyeOff } from "lucide-react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
@@ -17,10 +17,6 @@ function ResetPassword() {
 
   const savedToken = localStorage.getItem("resetToken");
 
-  if (localStorage.removeItem("resetToken")&&  tokenFromLink !== savedToken) {
-    // التوكن مش صح → ما تخليش المستخدم يعدل الباسورد
-    return <p>Invalid or expired link</p>;
-  }
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -30,6 +26,15 @@ function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  if (localStorage.removeItem("resetToken")&&  tokenFromLink !== savedToken) {
+    // التوكن مش صح → ما تخليش المستخدم يعدل الباسورد
+    return <div className="bg-green-50 bg-opacity-80 p-4 flex items-center gap-3 shadow-md rounded-2xl border border-green-200 mt-4 animate-fadeIn">
+      <span className="text-green-600 text-2xl">✅</span>
+      <p className="text-green-700 font-medium">
+        Invalid token or Expired link. Please request a new password reset.
+      </p>
+    </div>;
+  }
   async function handleSubmit(e) {
     e.preventDefault();
 
