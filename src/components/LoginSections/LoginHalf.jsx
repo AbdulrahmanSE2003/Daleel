@@ -5,7 +5,7 @@ function LoginHalf({ onSwitch }) {
     const { t } = useTranslation();
 
     return (
-        <div className="bg-gray-50 w-full h-screen ps-8 md:ps-16 p-8 mb-14 md:mb-0 flex flex-col justify-start gap-6">
+        <div className="bg-gray-50 w-full h-screen ps-8 md:ps-16 p-8 mb-14 md:mb-0 flex flex-col justify-start gap-10">
             <h3 className="text-4xl font-semibold italic text-gray-800 mb-2">
                 {t("loginHalf.title")}
             </h3>

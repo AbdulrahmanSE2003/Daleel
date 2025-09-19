@@ -43,21 +43,21 @@ function SignupHalf({ onSwitch }) {
     }
 
     useEffect(() => {
-        /* global google */
+        // /* global Google */
         if (window.google) {
             window.google.accounts.id.initialize({
                 client_id:
                     "731351321833-a0rbcof0j7gh352jevfpok78iq1fvrl3.apps.googleusercontent.com",
                 callback: handleGoogleResponse,
             });
-
-            // ✅ Render Google button
-            window.google.accounts.id.renderButton(
-                document.getElementById("google-signup-btn"),
-                { theme: "outline", size: "large" }
-            );
         }
     }, []);
+
+    const handleCustomGoogleClick = () => {
+        if (window.google) {
+            window.google.accounts.id.prompt(); // يفتح popup sign-in
+        }
+    }
 
     // ================ Manual Signup =================
     async function handleRegister(e) {
@@ -101,10 +101,10 @@ function SignupHalf({ onSwitch }) {
     return (
         <>
             {error && <ErrorToast message={error} onClose={() => setError("")} />}
-            <div className="bg-gray-50 w-full h-full ps-16 p-10 py-6 flex flex-col justify-start items-between gap-6">
+            <div className="bg-gray-50 w-full h-full ps-16 p-10 py-6 flex flex-col justify-start gap-6">
                 <form
                     onSubmit={handleRegister}
-                    className="my-8 relative flex flex-col gap-6"
+                    className="my-8 relative flex flex-col gap-10"
                 >
                     {/* Name */}
                     <div className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-6">
@@ -232,13 +232,15 @@ function SignupHalf({ onSwitch }) {
                         {loading ? <Loader /> : t("signup.buttons.signup")}
                     </button>
 
-                    {/* Google Sign-In */}
-                    <div
-                        id="google-signup-btn"
+                    {/* زرار Google custom */}
+                    <button
+                        type="button"
+                        onClick={handleCustomGoogleClick}
+                        className="flex items-center justify-center gap-2 w-full py-3 px-6 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition"
                     >
-                        <FcGoogle className="mr-2 " />
-                        {t("signup.buttons.signupGoogle") || "Sign up with Google"}
-                    </div>
+                        <FcGoogle className="text-xl" />
+                        Sign up with Google
+                    </button>
 
                     {/* Already have account */}
                     <p className="text-center text-gray-600 mt-4">
@@ -252,6 +254,16 @@ function SignupHalf({ onSwitch }) {
                         </Link>
                     </p>
                 </form>
+                {/* Terms and Privacy */}
+                <div className="mt-8 text-center text-sm text-gray-500">
+                    {t("form.termsText", {
+                        defaultValue:
+                            "By signing in, you agree to our Terms of Service and Privacy Policy",
+                    })}
+                    <Link to="/privacy" className="text-emerald-600 hover:underline">
+                        {t("form.privacy")}
+                    </Link>.
+                </div>
             </div>
         </>
     );

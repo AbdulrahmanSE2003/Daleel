@@ -27,7 +27,9 @@ function Form({ onSwitch }) {
 
     try {
       const res = await axios.post(`${BASE_API}login/google`, { token });
+      console.log(res)
       const jwt = res.data.token || res.data.access_token;
+      console.log(jwt)
 
       if (jwt) {
         localStorage.setItem("token", jwt);
@@ -46,14 +48,14 @@ function Form({ onSwitch }) {
             "731351321833-a0rbcof0j7gh352jevfpok78iq1fvrl3.apps.googleusercontent.com",
         callback: handleGoogleResponse,
       });
-
-      // ✅ Render Google button inside our div
-      window.google.accounts.id.renderButton(
-          document.getElementById("google-login-btn"),
-          { theme: "outline", size: "large" }
-      );
     }
   }, []);
+
+  const handleCustomGoogleClick = () => {
+    if (window.google) {
+      window.google.accounts.id.prompt(); // يفتح popup Google Sign-In
+    }
+  };
 
   // ================= Manual Login =================
   async function handleForm(e) {
@@ -86,7 +88,7 @@ function Form({ onSwitch }) {
   return (
       <>
         {error && <ErrorToast message={error} onClose={() => setError("")} />}
-        <form onSubmit={handleForm} className="my-8 relative flex flex-col gap-6">
+        <form onSubmit={handleForm} className="my-8 relative flex flex-col gap-8">
           {/* Email */}
           <div className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-6">
             <Mail
@@ -152,14 +154,15 @@ function Form({ onSwitch }) {
             {loading ? <Loader /> : t("form.signIn")}
           </button>
 
-          {/* Google Sign-In */}
-          <div
-              id="google-login-btn"
+          {/* Custom Google Sign-In Button */}
+          <button
+              type="button"
+              onClick={handleCustomGoogleClick}
+              className="flex items-center justify-center gap-2 w-full py-3 px-6 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition"
           >
-            {/* Placeholder for Google button */}
-            <FcGoogle className="mr-2 text-xl" />
+            <FcGoogle className="text-xl" />
             {t("form.signInGoogle")}
-          </div>
+          </button>
 
           {/* Forget Password */}
           <Link
@@ -179,6 +182,17 @@ function Form({ onSwitch }) {
               {t("form.signUp")}
             </Link>
           </p>
+            {/* Terms and Privacy */}
+          <div className="mt-8 text-center text-sm text-gray-500">
+            {t("form.termsText", {
+              defaultValue:
+                  "By signing in, you agree to our Terms of Service and Privacy Policy",
+            })}
+            <Link to="/privacy" className="text-emerald-600 hover:underline">
+              {t("form.privacy")}
+            </Link>.
+          </div>
+
         </form>
       </>
   );

@@ -1,10 +1,27 @@
 import { useState } from "react";
 import { Lock, Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+
+const BASE_API = "https://dalil-backend-production.up.railway.app/api/";
 
 function ResetPassword() {
   const { t } = useTranslation();
+  const location = useLocation();
+
+  // استخراج email و token من URL
+  const [searchParams] = useSearchParams();
+  const emailFromLink = searchParams.get("email");
+  const tokenFromLink = searchParams.get("token");
+
+  const savedToken = localStorage.getItem("resetToken");
+
+  if (tokenFromLink !== savedToken) {
+    // التوكن مش صح → ما تخليش المستخدم يعدل الباسورد
+    return <p>Invalid or expired link</p>;
+  }
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -15,13 +32,31 @@ function ResetPassword() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     if (password !== confirmPassword) {
       setShowError(true);
       setErrorMessage(t("reset.errorMismatch"));
       return;
     }
-    setSubmitted(true);
-    console.log("Password reset:", password);
+
+    try {
+      await axios.post(`${BASE_API}reset-password`, {
+        emailFromLink,
+        tokenFromLink,
+        password,
+        password_confirmation : confirmPassword,
+      });
+
+      setSubmitted(true);
+      setShowError(false);
+      localStorage.removeItem("resetToken"); // امسح التوكن من LocalStorage بعد النجاح
+    } catch (error) {
+      console.error("Reset error:", error);
+      setShowError(true);
+      setErrorMessage(
+          error.response?.data?.message || "Failed to reset password."
+      );
+    }
   }
 
   return (
@@ -50,7 +85,7 @@ function ResetPassword() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder={t("reset.newPassword")}
-                      className="p-2 pl-10 w-full focus:outline-none focus:border-emerald-600 rounded-lg"
+                      className="p-2 px-10 w-full focus:outline-none focus:border-emerald-600 rounded-lg"
                       required
                   />
                   {showPassword ? (
@@ -79,7 +114,7 @@ function ResetPassword() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder={t("reset.confirmPassword")}
-                      className="p-2 pl-10 w-full focus:outline-none focus:border-emerald-600 rounded-lg"
+                      className="p-2 px-10 w-full focus:outline-none focus:border-emerald-600 rounded-lg"
                       required
                   />
                   {showConfirm ? (

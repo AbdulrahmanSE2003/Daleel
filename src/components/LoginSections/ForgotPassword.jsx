@@ -1,12 +1,11 @@
-import axios from "axios";
 import { useState } from "react";
 import { Mail } from "lucide-react";
+import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
 import Loader from "../Loader";
 import ErrorToast from "../ErrorToast";
 import { useTranslation } from "react-i18next";
-
-const BASE_API = "https://dalil-backend-production.up.railway.app/api/";
+import emailjs from "emailjs-com";
 
 function ForgotPassword() {
   const { t } = useTranslation();
@@ -27,10 +26,23 @@ function ForgotPassword() {
     setError("");
 
     try {
-      await axios.post(`${BASE_API}forgot-password`, { email });
+      // 👇 إرسال الإيميل عبر EmailJS
+      const token = uuidv4(); // توليد توكن عشوائي
+      localStorage.setItem("resetToken", token); // نخزن التوكن في LocalStorage مؤقت
+      console.log(email)
+      await emailjs.send(
+          "service_5630k6g",
+          "template_pb8wg1h",
+          {
+            email: email,
+            link: `https://daleel-safe-links.netlify.app/reset?email=${email}&token=${token}`,
+          },
+          "nhyoEmWLNjoNInN78"
+      );
+
       setSubmitted(true);
-    } catch (error) {
-      setError(error.response?.data?.message || t("auth.genericError"));
+    } catch (err) {
+      setError(err.text || t("auth.genericError"));
     } finally {
       setLoading(false);
     }
@@ -78,7 +90,10 @@ function ForgotPassword() {
 
                 <p className="text-sm text-gray-500 text-center">
                   {t("auth.rememberPassword")}{" "}
-                  <Link to="/login" className="text-emerald-700 font-medium hover:underline">
+                  <Link
+                      to="/login"
+                      className="text-emerald-700 font-medium hover:underline"
+                  >
                     {t("auth.login")}
                   </Link>
                 </p>
@@ -93,7 +108,7 @@ function ForgotPassword() {
                   {t("auth.resetLinkSent")}
                 </p>
                 <Link to="/login">
-                  <button className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full py-3 rounded-lg text-white font-semibold mt-4">
+                  <button className="bg-emerald-700 hover:bg-emerald-800 transition duration-300 w-full p-3 rounded-lg text-white font-semibold mt-4">
                     {t("auth.backToLogin")}
                   </button>
                 </Link>

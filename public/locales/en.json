@@ -122,6 +122,8 @@
     "signInGoogle": "Sign in with Google",
     "noAccount": "Don't have an Account?",
     "signUp": "Sign Up",
+    "termsText": "By signing in, you agree to our Terms of Service and ",
+    "privacy": "Privacy Policy.",
     "errors": {
       "required": "All fields are required!",
       "passwordLength": "Password must be 8 or more characters.",
