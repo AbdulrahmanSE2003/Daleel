@@ -17,9 +17,9 @@ function LinkCard({ link, onDelete, onEdit }) {
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
   const qrRef = useRef();
 
-  function handleCopy(link) {
+  function handleCopy(linkUrl) {
     navigator.clipboard
-        .writeText(link)
+        .writeText(linkUrl)
         .then(() => {
           setIsCopied(true);
           setTimeout(() => setIsCopied(false), 3000);
@@ -41,14 +41,15 @@ function LinkCard({ link, onDelete, onEdit }) {
   return (
       <>
         {/* Link Card */}
-        <div className="relative flex flex-col h-full bg-white/70 backdrop-blur-md
+        <div
+            className="relative flex flex-col h-full bg-white/70 backdrop-blur-md
         border border-gray-200 rounded-2xl shadow-md
-        hover:shadow-xl transition-all duration-300 overflow-hidden">
-
+        hover:shadow-xl transition-all duration-300 overflow-hidden"
+        >
           {/* Header */}
           <div className="p-5 flex flex-col gap-2 flex-grow">
             <div className="flex items-center gap-3">
-              <span>{link.emoji}</span>
+              <span className="text-xl">{link.emoji || "🔗"}</span>
               <h2 className="text-lg font-semibold text-gray-900 truncate capitalize">
                 {link.title}
               </h2>
@@ -63,16 +64,17 @@ function LinkCard({ link, onDelete, onEdit }) {
               >
                 {link.url}
               </a>
-              <Tooltip title={isCopied ? t("linkCard.linkCopied") : t("linkCard.copyLink")} arrow>
+              <Tooltip
+                  title={
+                    isCopied ? t("linkCard.linkCopied") : t("linkCard.copyLink")
+                  }
+                  arrow
+              >
                 <button
                     onClick={() => handleCopy(link.url)}
                     className="flex items-center justify-center p-2 bg-gray-200/90 text-gray-600 rounded-full hover:bg-gray-300/90 transition-all duration-300 transform hover:scale-110"
                 >
-                  {isCopied ? (
-                      <ClipboardCheck size={18} />
-                  ) : (
-                      <Clipboard size={18} />
-                  )}
+                  {isCopied ? <ClipboardCheck size={18} /> : <Clipboard size={18} />}
                 </button>
               </Tooltip>
             </div>
@@ -80,14 +82,19 @@ function LinkCard({ link, onDelete, onEdit }) {
             {/* Tags */}
             {link.tags?.length > 0 && (
                 <div className="flex flex-wrap gap-1 mt-2">
-                  {link.tags.map((tag, idx) => (
-                      <span
-                          key={idx}
-                          className="text-xs bg-emerald-100 text-emerald-900 px-2 py-1 rounded-full border border-emerald-100 capitalize "
-                      >
-                  #{typeof tag === "string" ? tag : tag.name}
-                </span>
-                  ))}
+                  {link.tags
+                      ?.filter((tag) => tag) // remove null/undefined
+                      .map((tag, idx) => {
+                        const tagName = typeof tag === "string" ? tag : tag.name;
+                        return (
+                            <span
+                                key={idx}
+                                className="text-xs bg-emerald-100 text-emerald-900 px-2 py-1 rounded-full border border-emerald-100 capitalize "
+                            >
+                      #{tagName}
+                    </span>
+                        );
+                      })}
                 </div>
             )}
           </div>
@@ -98,7 +105,7 @@ function LinkCard({ link, onDelete, onEdit }) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm px-4 py-2 rounded-lg font-medium transition-all"
+                className="bg-[#0c8f63] hover:bg-[#0a7a54] text-white text-sm px-4 py-2 rounded-lg font-medium transition-all"
             >
               {t("linkCard.open")}
             </a>
@@ -155,16 +162,17 @@ function LinkCard({ link, onDelete, onEdit }) {
                     >
                       {link.url}
                     </a>
-                    <Tooltip title={isCopied ? t("linkCard.linkCopied") : t("linkCard.copyLink")} arrow>
+                    <Tooltip
+                        title={
+                          isCopied ? t("linkCard.linkCopied") : t("linkCard.copyLink")
+                        }
+                        arrow
+                    >
                       <button
                           onClick={() => handleCopy(link.url)}
                           className="flex items-center justify-center p-2 bg-gray-100/90 text-gray-600 rounded-full hover:bg-gray-200/90 transition-all duration-300 transform hover:scale-110"
                       >
-                        {isCopied ? (
-                            <ClipboardCheck size={18} />
-                        ) : (
-                            <Clipboard size={18} />
-                        )}
+                        {isCopied ? <ClipboardCheck size={18} /> : <Clipboard size={18} />}
                       </button>
                     </Tooltip>
                   </div>

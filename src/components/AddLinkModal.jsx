@@ -11,23 +11,22 @@ function AddLinkModal({ onClose, setLinks, links }) {
   const { t } = useTranslation();
   const [linkName, setLinkName] = useState("");
   const [linkUrl, setLinkUrl] = useState("");
-  const [linkTags, setLinkTags] = useState([]);
+  const [linkTags, setLinkTags] = useState([]); // [{name: "work"}]
   const [emoji, setEmoji] = useState("🔗");
   const [showPicker, setShowPicker] = useState(false);
   const [tagInput, setTagInput] = useState("");
   const [error, setError] = useState("");
-  const [showError,setShowError] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   async function handleAdd() {
     if (!isValidUrl(linkUrl)) {
-      console.error("Invalid URL");
-        setError("Please enter a valid URL.");
-        setShowError(true)
+      setError("Please enter a valid URL.");
+      setShowError(true);
 
-        setTimeout(() =>{
-          setError("")
-          setShowError(false)
-        },3000)
+      setTimeout(() => {
+        setError("");
+        setShowError(false);
+      }, 3000);
       return;
     }
 
@@ -35,10 +34,10 @@ function AddLinkModal({ onClose, setLinks, links }) {
       title: linkName,
       url: linkUrl,
       emoji,
-      tags: linkTags,
+      tags: linkTags, // [{name: "..."}]
     };
 
-    setLinks([ ...links, newLink]);
+    setLinks([...links, newLink]);
     onClose(false);
 
     try {
@@ -47,7 +46,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
           {
             title: linkName,
             url: linkUrl,
-            tags: linkTags,
+            tags: linkTags.map((tag) => tag.name), // ✅ backend بياخد strings
             emoji: emoji,
           },
           {
@@ -57,24 +56,24 @@ function AddLinkModal({ onClose, setLinks, links }) {
           }
       );
 
+      // ✅ نخزن الـ tags كـ objects تاني
       setLinks((prev) =>
           prev.map((link) =>
-              link.id === newLink.id ? { ...res.data, ...newLink, } : link
+              link.id === newLink.id
+                  ? { ...res.data, tags: res.data.tags.map((t) => ({ name: t })) }
+                  : link
           )
       );
-
     } catch (error) {
       console.error("Failed to save link:", error);
     }
   }
-
 
   function isValidUrl(url) {
     try {
       new URL(url);
       return true;
     } catch (err) {
-      console.error(err);
       return false;
     }
   }
@@ -90,12 +89,12 @@ function AddLinkModal({ onClose, setLinks, links }) {
 
   function handleTagKeyDown(e) {
     if (e.key === "Enter" && tagInput.trim() && linkTags.length < 3) {
-      setLinkTags([...linkTags, tagInput.trim()]);
+      setLinkTags([...linkTags, { name: tagInput.trim() }]); // ✅ object
       setTagInput("");
     }
   }
 
-  return  (
+  return (
       <>
         {showError && error && (
             <ErrorToast message={error} onClose={() => setShowError(false)} />
@@ -167,7 +166,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
                           key={index}
                           className="group bg-[#0c8f63]/10 text-[#0c8f63] px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1.5 hover:bg-[#0c8f63]/20 transition-all duration-300"
                       >
-                    {tag}
+                    {tag.name}
                         <button
                             type="button"
                             onClick={() => removeTag(index)}

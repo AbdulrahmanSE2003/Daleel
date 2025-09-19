@@ -10,10 +10,13 @@ export default function EditLinkModal({ link, onClose, links, setLinks }) {
   const { t } = useTranslation();
   const { id, title, url, emoji, tags } = link;
 
-  const [linkName, setLinkName] = useState(title);
-  const [linkUrl, setLinkUrl] = useState(url);
-  const [linkTags, setLinkTags] = useState(tags?.map((t) => t.name) || []);
-  const [linkEmoji, setEmoji] = useState(emoji);
+  const [linkName, setLinkName] = useState(title || "");
+  const [linkUrl, setLinkUrl] = useState(url || "");
+  // نتأكد إن tags array of strings
+  const [linkTags, setLinkTags] = useState(
+      tags?.map((t) => (typeof t === "string" ? t : t.name)) || []
+  );
+  const [linkEmoji, setEmoji] = useState(emoji || "");
   const [showPicker, setShowPicker] = useState(false);
   const [tagInput, setTagInput] = useState("");
 
@@ -34,34 +37,38 @@ export default function EditLinkModal({ link, onClose, links, setLinks }) {
   }
 
   async function handleUpdate() {
+    const cleanTags = linkTags.filter((t) => t && t.trim());
+
     const newLink = {
       id,
-      title: linkName,
-      url: linkUrl,
+      title: linkName.trim(),
+      url: linkUrl.trim(),
       emoji: linkEmoji,
-      tags: linkTags,
+      tags: cleanTags,
     };
 
-    setLinks(links.map((link) => (link.id === id ? newLink : link)));
+    // تحديث سريع على طول عشان الواجهة تتحدث
+    setLinks((prev) => prev.map((l) => (l.id === id ? newLink : l)));
     onClose(false);
 
     try {
       const res = await axios.put(
           `${BASE_API}links/${id}`,
-          {
-            title: linkName,
-            url: linkUrl,
-            emoji: linkEmoji,
-            tags: linkTags,
-          },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          newLink,
+          { headers: { Authorization: `Bearer ${token}` } }
       );
 
+      // تحديث بعد الريسبونس للتأكد من sync مع الباك إند
       setLinks((prev) =>
-          prev.map((link) =>
-              link.id === id ? { ...res.data, tags: newLink.tags } : link
+          prev.map((l) =>
+              l.id === id
+                  ? {
+                    ...newLink,
+                    ...res.data,
+                    tags: cleanTags, // دايمًا نخليها strings
+                    emoji: newLink.emoji,
+                  }
+                  : l
           )
       );
     } catch (error) {
@@ -116,7 +123,6 @@ export default function EditLinkModal({ link, onClose, links, setLinks }) {
                   value={linkEmoji}
                   onChange={(e) => setEmoji(e.target.value)}
                   className="w-full border-2 border-gray-200 rounded-lg p-2.5 pr-12 bg-white/50 focus:border-[#0c8f63] focus:ring-2 focus:ring-[#0c8f63]/30 outline-none transition-all duration-300"
-                  disabled
               />
               <button
                   type="button"
