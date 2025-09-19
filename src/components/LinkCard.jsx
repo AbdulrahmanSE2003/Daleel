@@ -48,6 +48,7 @@ function LinkCard({ link, onDelete, onEdit }) {
           {/* Header */}
           <div className="p-5 flex flex-col gap-2 flex-grow">
             <div className="flex items-center gap-3">
+              <span>{link.emoji}</span>
               <h2 className="text-lg font-semibold text-gray-900 truncate capitalize">
                 {link.title}
               </h2>

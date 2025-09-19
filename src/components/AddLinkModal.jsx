@@ -49,6 +49,7 @@ function AddLinkModal({ onClose, setLinks, links }) {
             title: linkName,
             url: linkUrl,
             tags: linkTags,
+            emoji,
           },
           {
             headers: {
@@ -73,7 +74,8 @@ function AddLinkModal({ onClose, setLinks, links }) {
     try {
       new URL(url);
       return true;
-    } catch (_) {
+    } catch (err) {
+      console.error(err);
       return false;
     }
   }
