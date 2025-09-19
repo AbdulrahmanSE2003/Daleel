@@ -51,6 +51,7 @@ export default function EditLinkModal({ link, onClose, links, setLinks }) {
           {
             title: linkName,
             url: linkUrl,
+            emoji: linkEmoji,
             tags: linkTags,
           },
           {
