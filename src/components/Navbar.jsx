@@ -34,7 +34,9 @@ function Navbar() {
                         alt="Logo"
                     />
                 </div>
-                <p className={`${lang !== "ar" ? "font-bold" : "font-normal"}`} >{lang === "en" ? "دليل" : "Daleel"}</p>
+                <p className={`${i18n.language === "en" ? "font-bold" : "font-normal"}`}>
+                    {i18n.language === "en" ? "Daleel" : "دليل"}
+                </p>
             </NavLink>
 
             {/* Menu button (mobile) */}
