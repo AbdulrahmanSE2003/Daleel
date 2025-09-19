@@ -39,7 +39,7 @@ function HeroSection() {
 
         {/* Main Hero */}
         <div
-            className={`relative flex flex-col md:flex-row justify-between items-center min-h-screen gap-8 md:gap-16 px-4 sm:px-8 md:px-16 lg:px-24 transition-all duration-1000 ease-in-out ${
+            className={`relative flex flex-col md:flex-row justify-center md:justify-between items-center min-h-screen gap-8 md:gap-16 px-4 sm:px-8 md:px-16 lg:px-24 transition-all duration-1000 ease-in-out ${
                 showSplash ? "opacity-0 translate-y-10" : "opacity-100 translate-y-0"
             }`}
         >
