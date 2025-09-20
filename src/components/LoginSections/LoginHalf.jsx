@@ -6,7 +6,7 @@ function LoginHalf({onSwitch}) {
 
     return (
         <div
-            className="bg-gray-50 w-full min-h-screen ps-8 md:ps-16 p-8 mb-14 md:mb-0 flex flex-col justify-start gap-5">
+            className="bg-gray-50 w-full h-full ps-8 md:ps-16 p-8 mb-0 md:mb-0 md:mt-20 flex flex-col justify-center gap-5">
             <h3 className="text-4xl font-semibold italic text-gray-800 mb-2">
                 {t("loginHalf.title")}
             </h3>

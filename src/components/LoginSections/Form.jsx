@@ -90,7 +90,7 @@ function Form({onSwitch}) {
     return (
         <>
             {error && <ErrorToast message={error} onClose={() => setError("")}/>}
-            <form onSubmit={handleForm} className="my-8 relative flex flex-col justify-around gap-6 grow">
+            <form onSubmit={handleForm} className="my-8 relative flex flex-col justify-start gap-6 grow">
                 {/* Email */}
                 <div
                     className="relative w-full border-2 border-gray-300 rounded-lg focus-within:border-emerald-600 group transition duration-300 mb-6">
