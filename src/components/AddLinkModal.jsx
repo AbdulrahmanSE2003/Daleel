@@ -37,7 +37,7 @@ function AddLinkModal({onClose, setLinks, links}) {
             tags: linkTags, // [{name: "..."}]
         };
 
-        // setLinks([...links, newLink]);   Cancel optimistic ui
+        setLinks([...links, newLink]);
         onClose(false);
 
         try {
@@ -46,7 +46,7 @@ function AddLinkModal({onClose, setLinks, links}) {
                 {
                     title: linkName,
                     url: linkUrl,
-                    tags: linkTags.map((tag) => tag.name), // ✅ backend بياخد strings
+                    tags: linkTags,
                     emoji: emoji,
                 },
                 {
@@ -55,10 +55,9 @@ function AddLinkModal({onClose, setLinks, links}) {
                     },
                 }
             );
+            // setLinks((prev) => [...prev, res.data]);
 
-            // ✅ نخزن الـ tags كـ objects تاني
-            console.log(res.data)
-            setLinks(prev => [...prev, res.data])
+
         } catch (error) {
             console.error("Failed to save link:", error);
         }
@@ -84,10 +83,11 @@ function AddLinkModal({onClose, setLinks, links}) {
 
     function handleTagKeyDown(e) {
         if (e.key === "Enter" && tagInput.trim() && linkTags.length < 3) {
-            setLinkTags([...linkTags, {name: tagInput.trim()}]); // ✅ object
+            setLinkTags([...linkTags, tagInput.trim()]); // ✅ string
             setTagInput("");
         }
     }
+
 
     return (
         <>
@@ -157,23 +157,30 @@ function AddLinkModal({onClose, setLinks, links}) {
                             <label className="block text-gray-700 text-sm font-medium mb-1.5">
                                 {t("addLink.labels.tags")}
                             </label>
+
                             <div
-                                className="flex flex-wrap gap-2 border-2 border-gray-200 rounded-lg p-2.5 bg-white/50 focus-within:border-[#0c8f63] focus-within:ring-2 focus-within:ring-[#0c8f63]/30 transition-all duration-300">
-                                {linkTags.map((tag, index) => (
-                                    <span
-                                        key={index}
-                                        className="group bg-[#0c8f63]/10 text-[#0c8f63] px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1.5 hover:bg-[#0c8f63]/20 transition-all duration-300"
-                                    >
-                    {tag.name}
-                                        <button
-                                            type="button"
-                                            onClick={() => removeTag(index)}
-                                            className="text-xs text-red-500 hover:text-red-700 group-hover:scale-110 transition-transform duration-300"
+                                className="flex flex-wrap gap-2 border-2 border-gray-200 rounded-lg p-2.5 bg-white/50 focus-within:border-[#0c8f63] focus-within:ring-2 focus-within:ring-[#0c8f63]/30 transition-all duration-300"
+                            >
+                                {linkTags.map((tag, index) => {
+                                    const tagName = typeof tag === "string" ? tag : tag?.name;
+
+                                    return (
+                                        <span
+                                            key={index}
+                                            className="group bg-[#0c8f63]/10 text-[#0c8f63] px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1.5 hover:bg-[#0c8f63]/20 transition-all duration-300"
                                         >
-                      ✕
-                    </button>
-                  </span>
-                                ))}
+          {tagName}
+                                            <button
+                                                type="button"
+                                                onClick={() => removeTag(index)}
+                                                className="text-xs text-red-500 hover:text-red-700 group-hover:scale-110 transition-transform duration-300"
+                                            >
+            ✕
+          </button>
+        </span>
+                                    );
+                                })}
+
                                 {linkTags.length < 3 && (
                                     <input
                                         type="text"
@@ -186,6 +193,7 @@ function AddLinkModal({onClose, setLinks, links}) {
                                 )}
                             </div>
                         </div>
+
 
                         <button
                             type="button"

@@ -73,23 +73,22 @@ function LinkCard({link, onDelete, onEdit}) {
                     </div>
 
                     {/* Tags */}
-                    {link.tags?.length > 0 && (
+                    {Array.isArray(link.tags) && link.tags.length > 0 && (
                         <div className="flex flex-wrap gap-1 mt-2">
                             {link.tags
-                                ?.filter((tag) => tag) // remove null/undefined
-                                .map((tag, idx) => {
-                                    const tagName = typeof tag === "string" ? tag : tag.name;
-                                    return (
-                                        <span
-                                            key={idx}
-                                            className="text-xs bg-emerald-100 text-emerald-900 px-2 py-1 rounded-full border border-emerald-100 capitalize "
-                                        >
-                      #{tagName}
-                    </span>
-                                    );
-                                })}
+                                .map((tag) => (typeof tag === "string" ? tag : tag?.name)) // ✅ normalize
+                                .filter(Boolean) // ✅ يشيل null / undefined / ""
+                                .map((tagName, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="text-xs bg-emerald-100 text-emerald-900 px-2 py-1 rounded-full border border-emerald-200 capitalize"
+                                    >
+          #{tagName}
+        </span>
+                                ))}
                         </div>
                     )}
+
                 </div>
 
                 {/* Footer Actions */}
