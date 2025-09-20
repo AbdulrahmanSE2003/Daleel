@@ -40,7 +40,7 @@ function Form({onSwitch}) {
     }
 
     useEffect(() => {
-        /* global google */
+        /* global Google */
         if (window.google) {
             window.google.accounts.id.initialize({
                 client_id:
