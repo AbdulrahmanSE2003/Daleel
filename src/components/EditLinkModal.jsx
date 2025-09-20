@@ -13,7 +13,7 @@ function EditLinkModal({link, onClose, setLinks, links}) {
     const [linkName, setLinkName] = useState(link.title || "");
     const [linkUrl, setLinkUrl] = useState(link.url || "");
     const [linkTags, setLinkTags] = useState(
-        link.tags?.map((tag) => (typeof tag === "string" ? {name: tag} : tag)) || []
+        link.tags?.map((tag) => (typeof tag === "string" ? tag : tag.name)) || []
     );
     const [emoji, setEmoji] = useState(link.emoji || "🔗");
     const [showPicker, setShowPicker] = useState(false);
@@ -35,29 +35,18 @@ function EditLinkModal({link, onClose, setLinks, links}) {
         const payload = {
             title: linkName,
             url: linkUrl,
-            emoji, // ✅ بيتبعت مع التعديل
-            tags: linkTags.map((tag) => tag.name),
+            emoji,
+            tags: linkTags, // ✅ نبعتهم سترينجز للـ API
         };
-        console.log(payload)
+
+        setLinks(links.map(l => l.id === link.id ? payload : l))
 
         try {
             const res = await axios.put(`${BASE_API}links/${link.id}`, payload, {
                 headers: {Authorization: `Bearer ${token}`},
             });
 
-            console.log(res.data)
-            console.log(res.data.tags)
 
-            // نخلي الداتا موحدة (tags كـ objects)
-            const updated = {
-                ...res.data,
-                emoji: payload.emoji,
-                tags: (res.data.tags || []).map((t) =>
-                    typeof t === "string" ? {name: t} : t
-                ),
-            };
-
-            setLinks(links.map((l) => (l.id === link.id ? updated : l)));
             onClose(false);
         } catch (error) {
             console.error("Failed to update link:", error);
@@ -84,7 +73,7 @@ function EditLinkModal({link, onClose, setLinks, links}) {
 
     function handleTagKeyDown(e) {
         if (e.key === "Enter" && tagInput.trim() && linkTags.length < 3) {
-            setLinkTags([...linkTags, {name: tagInput.trim()}]);
+            setLinkTags([...linkTags, tagInput.trim()]);
             setTagInput("");
         }
     }
@@ -164,7 +153,7 @@ function EditLinkModal({link, onClose, setLinks, links}) {
                                         key={index}
                                         className="group bg-[#0c8f63]/10 text-[#0c8f63] px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1.5 hover:bg-[#0c8f63]/20 transition-all duration-300"
                                     >
-                    {tag.name}
+                    {tag}
                                         <button
                                             type="button"
                                             onClick={() => removeTag(index)}
@@ -195,9 +184,7 @@ function EditLinkModal({link, onClose, setLinks, links}) {
                                 linkName && linkUrl ? "" : "cursor-not-allowed opacity-50"
                             }`}
                         >
-              <span className="relative z-10">
-                {t("editLink.buttons.save")}
-              </span>
+                            <span className="relative z-10">{t("editLink.buttons.save")}</span>
                             <div
                                 className="absolute inset-0 bg-[#0c8f63]/30 rounded-lg blur-sm group-hover:blur-md transition-all duration-300"></div>
                         </button>
