@@ -26,16 +26,19 @@ function Form({onSwitch}) {
 
         try {
             const res = await axios.post(`${BASE_API}login/google`, {token});
-            console.log(res)
-            const jwt = res.data.token || res.data.access_token;
-            console.log(jwt)
+            console.log("Backend Response:", res.data);
+            const jwt = res.data.token || res.data.access_token || res.data.jwt;
 
-            if (jwt) {
-                localStorage.setItem("token", jwt);
-                navigate("/links");
+            if (!jwt) {
+                throw new Error("No token received from backend");
             }
-        } catch {
-            setError(t("form.errors.google"));
+
+            localStorage.setItem("token", jwt);
+            navigate("/links");
+        } catch (error) {
+            const errorMessage = error.response?.data?.error || t("form.errors.google");
+            console.error("Google Sign-In Error:", error.response?.data || error.message);
+            setError(errorMessage);
         }
     }
 
